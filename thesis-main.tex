@@ -5,6 +5,7 @@
 \usepackage{notes}
 \usepackage{shortcuts}
 \usepackage{acronym}
+\usepackage[notransparent]{svg}
 
 \school{\unibo}
 \programme{Corso di Laurea in Ingegneria e Scienze Informatiche}
@@ -116,8 +117,45 @@ Dagli anni '90 sino ai primi anni '00 l'attenzione si è spostata sullo sviluppo
 
 Ad oggi la visione artificiale adotta tecniche e processi completamente differenti rispetto a quelli visti nei suoi primi anni di sviluppo, facendo largo uso di reti convoluzionali e dell'intelligenza artificiale (ormai largamente utilizzabile grazie alla sempre crescente potenza di calcolo a disposizione) che le permettono non solo di essere più veloce ma anche di garantire una precisione dei risultati molto maggiore grazie anche al vasto numero di dati a disposizione.
 
-\section{Marker fiduciali}
+\section{Marker fiduciari}
+I marker fiduciari sono degli oggetti che posti all'interno del campo visivo di una fotocamera possono essere utilizzati come punto di riferimento. 
+
+Gli scopi principali di questi marker sono sicuramente la calibrazione della camera, la localizzazione, il tracking e la rilevazione di oggetti.
+
+Alcuni possibili tipi di marker fiduciari sono riportati nella figura \ref{fig:marker_fiduciari}:
+
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\linewidth]{./figures/fiducialMarkers.png}
+	\caption{Marker fiduciari\cite{GARRIDOJURADO20142280}}
+	\label{fig:marker_fiduciari}
+\end{figure}
+
+\subsection{Applicazioni}
+\begin{itemize}
+	\item \textbf{Fisica}: per ottenere posizione e riferimenti di oggetti
+	\item \textbf{Realtà aumentata}: utilizzano i marker come ``ancore'' così da sapere dove posizionare gli elementi virtuali nel mondo reale
+	\item \textbf{Circuiti stampati}: identificano dei pattern così che i macchinari possano operare sui circuiti autonomamente
+\end{itemize}
+
 \subsection{ArUco markers}
+I marker ArUco sono una tipologia di marker fiduciari binari molto utilizzata in ambiente di visione artificiale, proprio il nome ArUco sta ad indicare: ``Augmented Reality University of Cordoba".
+
+La caratteristica principale di questo tipo di marker risiede nel fatto di essere estremamente versatile, come è possibile infatti vedere dalla figura \ref{fig:aruco_marker_0}
+all'interno del marker abbiamo dei quadrati bianchi e neri che identificano univocamente il marker stesso, il numero di quadrati sulle righe e quindi sulle colonne (i marker ArUco sono sempre di forma quadrata) sono definiti in base al dizionario
+
+\subsubsection{Dizionario}
+Ogni ArUco marker appartiene ad un dizionario il quale specifica la dimensione del marker e la disposizione interna dei quadrati bianchi e neri, modificando il dizionario possiamo ottenere marker più grandi e complessi che consentono rilevazioni più precise, riducendo la possibilità di confondere tra loro due marker simili, d'altro canto utilizzando marker più piccoli e semplici, nonostante si vada in contro ad una riduzione della precisione, si guadagna in velocità di elaborazione.
+
+parla della rotazione
+
+\begin{figure}
+	\centering
+	\includesvg{./figures/4x4_1000-0}
+	\caption{ArUco Marker 4x4 id: 0}
+	\label{fig:aruco_marker_0}
+\end{figure}
+\cite{reverseEngineeringArucoMarkers}
 
 \section{OpenCV}
 
