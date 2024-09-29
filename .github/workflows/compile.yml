@@ -22,15 +22,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-
-      - name: Install TeX Live
-        run: sudo apt-get install -y texlive-full
-        
-      - name: Add TeX Live to PATH
-        run: echo "/usr/local/texlive/2023/bin/x86_64-linux" >> $GITHUB_PATH
       
+      # Step to install Inkscape
       - name: Install Inkscape
         run: sudo apt-get install -y inkscape
 
-      - name: Compile LaTeX document
-        run: pdflatex --shell-escape -synctex=1 \\nonstopmode \\input{thesis-main.tex}
+      # Step to verify that Inkscape is installed
+      - name: Verify Inkscape installation
+        run: inkscape --version
+
+      # Install LaTeX package for SVG support
+      - name: Install LaTeX dependencies
+        run: sudo apt-get install -y texlive-latex-extra
+
+      # Add shell-escape option for LaTeX
+      - name: Compile LaTeX
+        uses: DanySK/compile-and-publish-all-latex@2.0.28
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          options: --shell-escape
