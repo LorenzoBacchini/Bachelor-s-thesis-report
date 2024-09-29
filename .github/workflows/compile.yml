@@ -23,11 +23,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      # Step to install Inkscape
-      - name: Install Inkscape
+      # Step to install Inkscape using apt
+      - name: Install Inkscape via APT
         run: sudo apt-get install -y inkscape
 
-      # Add Inkscape to the PATH explicitly
+      # Fallback: Install Inkscape via Snap if APT installation fails
+      - name: Install Inkscape fallback via Snap
+        run: |
+          if ! command -v inkscape &> /dev/null
+          then
+            sudo snap install inkscape
+          fi
+
+      # Add Inkscape to the PATH explicitly (for safety)
       - name: Add Inkscape to PATH
         run: echo "/usr/bin" >> $GITHUB_PATH
 
@@ -39,7 +47,7 @@ jobs:
       - name: Install LaTeX dependencies
         run: sudo apt-get install -y texlive-latex-extra
 
-      # Add shell-escape option for LaTeX
+      # Add shell-escape option for LaTeX compilation
       - name: Compile LaTeX
         uses: DanySK/compile-and-publish-all-latex@2.0.28
         with:
