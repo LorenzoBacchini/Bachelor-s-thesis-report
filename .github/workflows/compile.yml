@@ -20,36 +20,6 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Step to install Inkscape using apt
-      - name: Install Inkscape via APT
-        run: sudo apt-get install -y inkscape
-
-      # Fallback: Install Inkscape via Snap if APT installation fails
-      - name: Install Inkscape fallback via Snap
-        run: |
-          if ! command -v inkscape &> /dev/null
-          then
-            sudo snap install inkscape
-          fi
-
-      # Add Inkscape to the PATH explicitly (for safety)
-      - name: Add Inkscape to PATH
-        run: echo "/usr/bin" >> $GITHUB_PATH
-
-      # Step to verify that Inkscape is installed and executable
-      - name: Verify Inkscape installation
-        run: inkscape --version
-
-      # Install LaTeX package for SVG support
-      - name: Install LaTeX dependencies
-        run: sudo apt-get install -y texlive-latex-extra
-
-      # Add shell-escape option for LaTeX compilation
-      - name: Compile LaTeX
-        uses: DanySK/compile-and-publish-all-latex@2.0.28
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          options: --shell-escape
+      uses: DanySK/compile-and-publish-all-latex@2.0.28
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
