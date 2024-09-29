@@ -20,12 +20,11 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-    
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      
       - name: Install Inkscape
         run: sudo apt-get install -y inkscape
-      
-      - name: Compile LaTeX
-        uses: DanySK/compile-and-publish-all-latex@2.0.28
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Compile LaTeX document
+        run: pdflatex --shell-escape -synctex=1 \\nonstopmode \\input{thesis-main.tex}
