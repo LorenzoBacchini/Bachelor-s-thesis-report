@@ -22,12 +22,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
+
       # Step to install Inkscape
       - name: Install Inkscape
         run: sudo apt-get install -y inkscape
 
-      # Step to verify that Inkscape is installed
+      # Add Inkscape to the PATH explicitly
+      - name: Add Inkscape to PATH
+        run: echo "/usr/bin" >> $GITHUB_PATH
+
+      # Step to verify that Inkscape is installed and executable
       - name: Verify Inkscape installation
         run: inkscape --version
 
