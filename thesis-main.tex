@@ -263,9 +263,54 @@ Per robotica collettiva si intende tutta quella serie di applicazioni che consen
 
 Con smart cities e sistemi IoT invece possiamo riassumere le operazioni volte a gestire l'infrastruttura cittadina come l'illuminazione, il controllo dei semafori e del traffico, ma anche sistemi IoT decentralizzati che interagiscono tra loro per organizzarsi e prendere decisioni in autonomia.
 
+\section{Calibrazione della camera} \label{sec:calibrazione_della_camera}
+\textit{Di seguito sono riportate alcune informazioni di base per comprendere il concetto di calibrazione della camera}	
+\subsection{Cos'è la calibrazione?}
+La calibrazione è un processo volto a ottenere i parametri della lente e del sensore della videocamera/fotocamera,
+tali parametri potranno poi essere impiegati per correggere la distorsione della lente, calcolare distanze, ricostruire l'immagine 3D di partenza ecc \cite{cameraCalibrationMathWorks}.
+\subsection{Modello di calibrazione}
+Esistono diversi modelli di calibrazione in base al tipo di camera che si intende utilizzare, nel nostro caso possiamo ipotizzare l'utilizzo di uno dei modelli più semplici e cioè quello di una fotocamera con obiettivo stenopeico \ref{fig:pinhole_camera}, nella quale però teniamo conto anche della distorsione della lente. \cite{pinholeCamera} \cite{pinholeCameraModel} 
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{./figures/Pinhole-camera.png}
+	\caption{Rappresentazione camera con obiettivo stenopeico}
+	\label{fig:pinhole_camera}
+\end{figure}
+
+Il parametro più importante è la matrice della camera ``camera matrix" che mappa le coordinate del mondo 3D nell'immagine 2D catturata, questa matrice è ottenuta a partire dai parametri intrinseci e estrinseci:
+\begin{itemize}
+	\item Parametri estrinseci: rappresentano la posizione e rotazione della camera nel mondo reale.
+	\item Parametri intrinseci: consentono di trasformare le coordinate della camera 3D nelle coordinate dell'immagine 2D.
+\end{itemize}
+l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera. \ref{fig:calibration_cameramodel_coords}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{./figures/calibration-cameramodel-coords.png}
+	\caption{Processo di conversione dal mondo reale 3D all'immagine 2D}
+	\label{fig:calibration_cameramodel_coords}
+\end{figure}
+
+\subsection{Distorsione della lente}
+Un altro aspetto fondamentale da tenere in considerazione riguarda la distorsione introdotta dalla lente della camera, nel modello utilizzato infatti si trascura l'uso della lente ma in situazioni reali l'obiettivo gioca un ruolo cruciale, poiché introduce due tipi di distorsione:
+\begin{itemize}
+	\item Distorsione radiale: condizione per la quale i raggi di luce vengono curvati in maniera non uniforme, deformando l'immagine finale a partire dal centro dell'obiettivo. \ref{fig:radial_distortion}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{./figures/radial_distortion.png}
+		\caption{Distorsione radiale}
+		\label{fig:radial_distortion}
+	\end{figure}
+	\item  Distorsione tangenziale: distorsione che ha luogo nel caso in cui la lente è il piano che si vuole fotografare non sono paralleli. \ref{fig:tangential_distortion}
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{./figures/tangential_distortion.png}
+		\caption{Distorsione tangenziale}
+		\label{fig:tangential_distortion}
+	\end{figure}
+\end{itemize} 
 
 \chapter{Analisi}
-Questa tesi si pone l'obiettivo di creare un sistema software sviluppato in java o altro linguaggio che sia in grado di essere eseguito sulla \acrfull{jvm}, con il compito di localizzare e tracciare gli spostamenti di alcuni dispositivi\footnote{oggetti di ogni genere e tipo dei quali si vuole conoscere posizione e rotazione chiamati genericamente dispositivi in questa dissertazione} nel campo visivo di una videocamera.
+Il progetto si pone l'obiettivo di creare un sistema software sviluppato in java o altro linguaggio che sia in grado di essere eseguito sulla \acrfull{jvm}, con il compito di localizzare e tracciare gli spostamenti di alcuni dispositivi\footnote{oggetti di ogni genere e tipo dei quali si vuole conoscere posizione e rotazione chiamati genericamente dispositivi in questa dissertazione} nel campo visivo di una videocamera.
 
 Per poter analizzare correttamente il sistema in questione è necessario però fare un passo indietro, per introdurre il contesto nel quale dovrà inserirsi:
 \begin{adjustwidth}{1cm}{0cm}
@@ -373,53 +418,7 @@ Questa classe rappresenta il punto di ingresso dell'applicazione e si occupa di 
 	\label{fig:app}
 \end{figure}
 \subsection{cameraCalibrator}
-La classe cameraCalibrator ricopre un ruolo molto importante, il suo obiettivo è quello di calibrare la camera affinché le immagini ottenute consentano di stabilire correttamente la posizione della stessa rispetto agli oggetti nella scena. \ref{fig:camera_calibrator}.
-
-\vspace{0.5cm}
-\textit{Di seguito sono riportate alcune informazioni di base per comprendere il concetto di calibrazione della camera}	
-\subsubsection{Cos'è la calibrazione?}
-La calibrazione è un processo volto a ottenere i parametri della lente e del sensore della videocamera/fotocamera,
-tali parametri potranno poi essere impiegati per correggere la distorsione della lente, calcolare distanze, ricostruire l'immagine 3D di partenza ecc \cite{cameraCalibrationMathWorks}.
-\subsubsection{Modello di calibrazione}
-Esistono diversi modelli di calibrazione in base al tipo di camera che si intende utilizzare, nel nostro caso, ipotizzando l'utilizzo di una webcam, il modello che meglio si adatta è quello di una fotocamera con obiettivo stenopeico \ref{fig:pinhole_camera}, nella quale però teniamo conto anche della distorsione della lente. \cite{pinholeCamera} \cite{pinholeCameraModel} 
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth]{./figures/Pinhole-camera.png}
-	\caption{Rappresentazione camera con obiettivo stenopeico}
-	\label{fig:pinhole_camera}
-\end{figure}
-
-Il parametro più importante è la matrice della camera ``camera matrix" che mappa le coordinate del mondo 3D nell'immagine 2D catturata, questa matrice è ottenuta a partire dai parametri intrinseci e estrinseci:
-\begin{itemize}
-	\item Parametri estrinseci: rappresentano la posizione e rotazione della camera nel mondo reale.
-	\item Parametri intrinseci: consentono di trasformare le coordinate della camera 3D nelle coordinate dell'immagine 2D.
-\end{itemize}
-l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera. \ref{fig:calibration_cameramodel_coords}
-\begin{figure}
-	\centering
-	\includegraphics[width=0.5\linewidth]{./figures/calibration-cameramodel-coords.png}
-	\caption{Processo di conversione dal mondo reale 3D all'immagine 2D}
-	\label{fig:calibration_cameramodel_coords}
-\end{figure}
-
-\subsubsection{Distorsione della lente}
-Un altro aspetto fondamentale da tenere in considerazione riguarda la distorsione introdotta dalla lente della camera, nel modello utilizzato infatti si trascura l'uso della lente ma in situazioni reali l'obiettivo gioca un ruolo cruciale, poiché introduce due tipi di distorsione:
-\begin{itemize}
-	\item Distorsione radiale: condizione per la quale i raggi di luce vengono curvati in maniera non uniforme, deformando l'immagine finale a partire dal centro dell'obiettivo. \ref{fig:radial_distortion}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.5\linewidth]{./figures/radial_distortion.png}
-		\caption{Distorsione radiale}
-		\label{fig:radial_distortion}
-	\end{figure}
-	\item  Distorsione tangenziale: distorsione che ha luogo nel caso in cui la lente è il piano che si vuole fotografare non sono paralleli. \ref{fig:tangential_distortion}
-	\begin{figure}
-		\centering
-		\includegraphics[width=0.5\linewidth]{./figures/tangential_distortion.png}
-		\caption{Distorsione tangenziale}
-		\label{fig:tangential_distortion}
-	\end{figure}
-\end{itemize} 
+La classe cameraCalibrator ricopre un ruolo molto importante, il suo obiettivo è quello di calibrare la camera \ref{sec:calibrazione_della_camera} affinché le immagini ottenute consentano di stabilire correttamente la posizione della stessa rispetto agli oggetti nella scena. \ref{fig:camera_calibrator}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/cameraCalibrator.png}
@@ -470,10 +469,10 @@ Nell'associazione in figura \ref{fig:UI} App.java fa uso della classe InputParam
 %provvisorio: nel design dettagliato procederai a definire un po' più nel dettaglio le tre componenti enunciate nell'architettura senza entrare troppo nello specifico dell'implementazione ma limitandoti a definire i compiti delle tre parti
 
 \chapter{Implementazione}
+
 %descrivi le varie fasi di calibrazione posa ecc. riferendoti a quanto già espresso durante la fase di analisi e soprattutto design
 
 %dovrai parlare meglio anche delle funzioni di openCv dato che nel design hai appena accennato a OpenCV
-%vedi tu se inserire i calcoli matematici presenti anche nella pagina di opencv per la calibrazione e posa degli ArUco marker, utili a stimare parametri intrinsechi e estrinsechi della camera e la posa
 \chapter{Valutazione}
 
 \chapter{Conclusioni}
