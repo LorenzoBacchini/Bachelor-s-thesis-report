@@ -469,16 +469,44 @@ Nell'associazione in figura \ref{fig:UI} App.java fa uso della classe InputParam
 %provvisorio: nel design dettagliato procederai a definire un po' più nel dettaglio le tre componenti enunciate nell'architettura senza entrare troppo nello specifico dell'implementazione ma limitandoti a definire i compiti delle tre parti
 
 \chapter{Implementazione}
+In questo capitolo verranno presentate alcune scelte implementative effettuate durante lo sviluppo software, con particolare attenzione alle fasi di calibrazione e posa della camera.
+
+\section{Creazione del progetto}
+Il software è stato sviluppato all'interno di un progetto java utilizzando Gradle con uno script di build in Kotlin.
+
+\section{OpenCV}
+Per poter utilizzare funzionalità di visione artificiale, dopo alcune ricerche ho deciso di affidarmi alla libreria OpenCV \ref{sec:opencv}.
+
+OpenCV mette infatti a disposizione una serie di moduli, attraverso i quali, si possono realizzare applicazioni di visione artificiale di ogni tipo quali: rilevazione di oggetti, riconoscimento facciale, ecc.
+
+\subsection{JavaCV}
+JavaCV \ref{subsec:javacv} è un wrapper per OpenCV, durante l'implementazione è infatti stato usato al posto di OpenCV nativo in quanto fornisce metodi semplificati per la creazione della GUI come CanvasFrame e classi di utility semplificate per l'utilizzo in java.
+
+La dipendenza necessaria per utilizzare JavaCV è stata inserità nel file build.gradle.kts \cref{lst:javacv-dependencies}
+\lstinputlisting[float,language=Kotlin,label={lst:javacv-dependencies}]{listings/build.gradle.javacv.kts}
+
+\section{App}
+La classe App.java è responsabile dell'inizializzazione dei parametri utili al sistema per funzionare correttamente oltre che dell'avvio della fase di calibrazione e posa della camera.
+
+Come prima operazione vengono caricate le classi di OpenCV in maniera dinamica \cref{lst:opencv-loading}, dopodiché la classe App.java si occuperà di istanziare e lanciare la classe InputParameter.java 
+%inserisci il codice di richiamo a InputParameter, e completa la descrizione di App con cameracalibrator.java e camerapose.java
+\lstinputlisting[float,language=Java,label={lst:opencv-loading}]{listings/opencv-loading.java}
+
+\section{Calibrazione}
+%descrivi la fase di calibrazione in maniera meticolosa, ponendo enfasi sulle parti in cui usi funzionalità di javacv e ottieni i parametri come la camera matrix
+\section{Posa}
+%descrivi la classe più importante del codice (questa) andando molto nel dettaglio di alcuni metodi (soprattutto calcPose) dopodichè dai un'idea generale del funzionamento di questa classe riportando i punti salienti
+
 
 %descrivi le varie fasi di calibrazione posa ecc. riferendoti a quanto già espresso durante la fase di analisi e soprattutto design
 
 %dovrai parlare meglio anche delle funzioni di openCv dato che nel design hai appena accennato a OpenCV
 \chapter{Valutazione}
-
+%parla dei test effettuati fisicamente in taverna e dei test con il robot sempre che possano essere considerati test, poi guarda le altre tesi per confrontarti se va bene quello che vuoi dire
 \chapter{Conclusioni}
-
+%di che il sistema funziona ed è preciso
 \chapter{Sviluppi futuri}
-
+%di che potrebbe essere usato in altri contesti indoor magari potenziando camera e hardware e magari modificando calibrazione con charuco board e marker diversi
 \chapter{Ringraziamenti}
 
 I suggest referencing stuff as follows: \cref{fig:random-image} or \Cref{fig:random-image}
