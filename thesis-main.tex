@@ -22,11 +22,6 @@
 \session{III}
 \academicyear{2023-2024}
 
-% Definition of acronyms
-%\acrodef{IoT}{Internet of Thing}
-%\acrodef{vm}[VM]{Virtual Machine}
-
-
 \mainlinespacing{1.241} % line spacing in mainmatter, comment to default (1)
 \makeglossaries
 \newglossaryentry{FullHD}
@@ -53,6 +48,7 @@
 	name=DICT\textunderscore4X4\textunderscore100,
 	description=dizionario con marker 4x4 e con una quantità massima di marker istanziabili pari a 100
 }
+% Definition of acronyms
 \newacronym{ocr}{OCR}{optical character recognition}
 \newacronym{aruco}{ArUco}{Augmented Reality University of Cordova}
 \newacronym{jvm}{JVM}{Java Virtual Machine}
@@ -81,7 +77,7 @@ Optional. Max a few lines.
 
 %----------------------------------------------------------------------------------------
 \chapter{Introduzione}
-questo capitolo lo scriverò alla fine ma devo ricordarmi di dire che il mio contributo al progetto è stato particolare perché in un ambiente outdoor non sarebbe stato necessario l'utilizzo di marker \acrfull{aruco} e camere, ma sarebbe bastato il GPS \label{chap:introduction}
+questo capitolo lo scriverò alla fine ma devo ricordarmi di dire che il mio contributo al progetto è stato particolare perché in un ambiente outdoor non sarebbe stato necessario l'utilizzo di marker aruco e camere, ma sarebbe bastato il GPS \label{chap:introduction}
 %----------------------------------------------------------------------------------------
 
 Write your intro here.
@@ -109,18 +105,18 @@ you may need both  and .
 \section{Visione artificiale}
 
 \subsection{Cos'è la visione artificiale?}
-Quando parliamo di visione artificiale o computer vision stiamo considerando un insieme di processi e tecniche che hanno come scopo finale quello di trasformare degli input (solitamente foto o video \footnote{gli input potrebbero essere anche generati da scanner, sensori LiDaR, radar ecc.}) in una serie di informazioni utili al calcolatore, che possono poi essere utilizzate per prendere decisioni in maniera autonoma, analizzare una situazione o addirittura creare una rappresentazione del mondo reale 3D che ci circonda. \cite{bradski2008learning} \cite{microsoftArtificialVision}
+Quando parliamo di visione artificiale o computer vision stiamo considerando un insieme di processi e tecniche che hanno come scopo finale quello di trasformare degli input (solitamente foto o video\footnote{gli input potrebbero essere anche generati da scanner, sensori LiDaR, radar ecc.}) in una serie di informazioni utili al calcolatore, che possono poi essere utilizzate per prendere decisioni in maniera autonoma, analizzare una situazione o addirittura creare una rappresentazione del mondo reale 3D che ci circonda. \cite{bradski2008learning} \cite{microsoftArtificialVision}
 
 Quanto sopra descritto non è troppo diverso da ciò che i nostri occhi fanno tutti i giorni, ed infatti, la visione artificiale nasce proprio per permettere al calcolatore di ``vedere" esattamente come un essere umano, in modo da poter interagire con l'ambiente circostante.
 
 \subsection{Come funziona la visione artificiale?}
-Il processo di visione artificiale può essere suddiviso tre fasi principali:
+Il processo di visione artificiale può essere suddiviso in tre fasi principali:
 \begin{enumerate}
 	\item Acquisizione di un'immagine
 	\item Interpretazione e analisi dell'immagine
 	\item Richiesta di informazioni sull'immagine analizzata
 \end{enumerate}
-Nella fase di rilevazione come sopra citato è possibile utilizzare diversi tipi di strumenti come fotocamere o videocamere, ma è nella fase centrale che il processo può differire maggiormente, infatti, l'interpretazione dell'immagine viene effettuata secondo algoritmi che possono essere anche molto diversi in base al loro scopo, negli ultimi anni inoltre si stanno facendo largo nuove tecnologie \footnote{con il termine nuove non si intende che tecnologie come l'intelligenza artificiale o il machine learning siano state sviluppate negli ultimi anni, ma che iniziano ad essere prese sempre più in considerazione nell'ambito della visione artificiale} come l'intelligenza artificiale, il machine learning e il deep learning per poter intraprendere decisioni e svolgere compiti in modo autonomo senza il bisogno dell'intervento umano.
+Nella fase di rilevazione come sopra citato è possibile utilizzare diversi tipi di strumenti come fotocamere o videocamere, ma è nella fase centrale che il processo può differire maggiormente, infatti, l'interpretazione dell'immagine viene effettuata secondo algoritmi che possono essere anche molto diversi in base al loro scopo, negli ultimi anni inoltre si stanno facendo largo nuove tecnologie\footnote{con il termine nuove non si intende che tecnologie come l'intelligenza artificiale o il machine learning siano state sviluppate negli ultimi anni, ma che iniziano ad essere prese sempre più in considerazione nell'ambito della visione artificiale} come l'intelligenza artificiale, il machine learning e il deep learning per poter intraprendere decisioni e svolgere compiti in modo autonomo senza il bisogno dell'intervento umano.
 
 \subsection{Applicazioni e finalità}
 Di seguito sono elencate alcune applicazioni della visione artificiale:
@@ -146,7 +142,7 @@ solo intorno agli anni '80 si sono iniziati a vedere i primi sviluppi significat
 e dei primi algoritmi di riconoscimento ottico dei caratteri \acrfull{ocr}.
 Dagli anni '90 sino ai primi anni '00 l'attenzione si è spostata sullo sviluppo di algoritmi di machine learning, questo ha permesso nel 2001 di sviluppare il primo algoritmo di riconoscimento facciale.\cite{artificialVisionHistory}
 
-Ad oggi la visione artificiale adotta tecniche e processi completamente differenti rispetto a quelli visti nei suoi primi anni di sviluppo, facendo largo uso di reti convoluzionali e dell'intelligenza artificiale (ormai largamente utilizzabile grazie alla sempre crescente potenza di calcolo a disposizione) che le permettono non solo di essere più veloce ma anche di garantire una precisione dei risultati molto maggiore grazie anche al vasto numero di dati a disposizione.
+Ad oggi la visione artificiale adotta tecniche e processi completamente differenti rispetto a quelli visti nei suoi primi anni di sviluppo, facendo largo uso di reti convoluzionali e dell'intelligenza artificiale (ormai largamente utilizzabile grazie alla sempre crescente potenza di calcolo dei dispositivi) che le permettono non solo di essere più veloce ma anche di garantire una precisione dei risultati molto maggiore grazie anche al vasto numero di dati a disposizione.
 
 \section{Marker fiduciari} \label{sec:marker_fiduciari}
 I marker fiduciari sono degli oggetti che, posti all'interno del campo visivo di una fotocamera possono essere utilizzati come punti di riferimento. 
@@ -155,7 +151,7 @@ Gli scopi principali di questi marker sono sicuramente la calibrazione della cam
 
 Alcuni possibili tipi di marker fiduciari sono riportati nella figura \ref{fig:marker_fiduciari}:
 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./figures/fiducialMarkers.png}
 	\caption{Marker fiduciari\cite{GARRIDOJURADO20142280}}
@@ -164,7 +160,7 @@ Alcuni possibili tipi di marker fiduciari sono riportati nella figura \ref{fig:m
 
 \subsection{Applicazioni}
 \begin{itemize}
-	\item \textbf{Fisica}: per ottenere posizione e riferimenti di oggetti
+	\item \textbf{Fisica}: per ottenere posizioni e riferimenti di oggetti
 	\item \textbf{Realtà aumentata}: utilizzo dei marker come ``ancore'' così da sapere dove posizionare gli elementi virtuali nel mondo reale
 	\item \textbf{Circuiti stampati}: identificano dei pattern così che i macchinari possano operare sui circuiti in maniera autonoma selezionando i componenti univocamente
 	
@@ -174,19 +170,18 @@ Alcuni possibili tipi di marker fiduciari sono riportati nella figura \ref{fig:m
 \end{itemize}
 
 \subsection{ArUco markers} \label{subsec:aruco_markers}
-I marker ArUco sono una tipologia di marker fiduciari binari molto utilizzata in ambiente di visione artificiale.
+I marker \acrfull{aruco} sono una tipologia di marker fiduciari binari molto utilizzata in ambiente di visione artificiale.
 
 La caratteristica principale di questo tipo di marker risiede nel fatto di essere estremamente versatile, dove,
-con il termine versatile si vuole sottolineare il fatto che questa tipologia di marker non necessita di particolari condizioni di luce ne di grandi capacità di elaborazione per essere processata, in quanto la complessità di ogni marker può variare in base alle esigenze, vedi figura \ref{fig:aruco_marker_0}.
+con il termine versatile si vuole sottolineare il fatto che questa tipologia di marker non necessita di particolari condizioni di luce ne di grandi capacità di elaborazione per essere processata, in quanto, la complessità di ogni marker può variare in base alle esigenze, vedi figura \ref{fig:aruco_marker_0}.
 
-Un altro aspetto fondamentale degli ArUco marker riguarda il fatto che, attraverso sistemi di posa della camera, utilizzata per ottenere le posizioni dei marker, è possibile calcolare anche la loro rotazione.
+Un altro aspetto fondamentale degli ArUco marker è dato dal fatto che, attraverso sistemi di posa della camera, utilizzata per ottenere le posizioni dei marker, è possibile calcolare anche la loro rotazione.
 
 \subsubsection{Come funzionano?}
 All'interno del marker abbiamo dei quadrati bianchi e neri che, in base alla loro disposizione identificano univocamente il marker stesso, il numero di questi quadrati e la loro disposizione possono variare in base al ``dizionario'' selezionato
 
 \subsubsection{Dizionario} \label{subsubsec:dizionario}
-\label{Dizionario}
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/4x4_1000-0.png}
 	\caption{ArUco Marker 4x4 id: 0}
@@ -199,8 +194,8 @@ Ogni ArUco marker appartiene ad un dizionario il quale ne specifica la dimension
 \end{center}
 
 \section{OpenCV} \label{sec:opencv}
-\acrfull{opencv} è una libreria realizzata inizialmente da Intel pensata per fornire funzioni di visione artificiale che facilitassero il compito degli sviluppatori, garantendo loro un'infrastruttura stabile sulla quale poter sviluppare \ref{fig:opencvLogo}.
-\begin{figure}
+\acrfull{opencv} è una libreria realizzata inizialmente da Intel pensata per fornire funzioni di visione artificiale che facilitassero il compito degli sviluppatori, garantendo loro un'infrastruttura stabile sulla quale poter lavorare \ref{fig:opencvLogo}.
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.3\linewidth]{figures/opencvLogo.png}
 	\caption{logo OpenCV}
@@ -221,9 +216,9 @@ Un sistema distribuito rappresenta una rete di processi o ``nodi di elaborazione
 
 Questo tipo di approccio è caratterizzato da una grande eterogeneità sia a livello hardware che software, la quale porta il sistema ad essere aperto a tecnologie diverse, che comunicano tra loro attraverso lo scambio di messaggi per far apparire il sistema distribuito come un'entità unica.
 
-L'aspetto fondamentale di questi sistemi riguarda il fatto che ad ogni singolo \gls{nodo} viene affidato un compito da espletare, il nodo in questione può comunicare con gli altri al fine di portare a termine il suo compito e può essere a sua volta interrogato dagli altri per fornire i risultati della sua elaborazione.
+L'aspetto fondamentale di questi sistemi riguarda il fatto che ad ogni singolo \gls{nodo} viene affidato un compito da espletare, il nodo in questione può comunicare con gli altri al fine di portare a termine il suo incarico e può essere a sua volta interrogato dagli altri per fornire i risultati della sua elaborazione.
 Tutto questo può essere visto dall'esterno come un unico sistema che però al suo interno è composto da una serie di dispositivi con compiti differenti che contribuiscono al raggiungimento di uno scopo comune \ref{fig:centralizedVsDistributed}
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{figures/centralizedVsDistributed.png}
 	\caption{Sistema centralizzato Vs distribuito \cite{centralizedVsDistributed}}
@@ -270,7 +265,7 @@ La calibrazione è un processo volto a ottenere i parametri della lente e del se
 tali parametri potranno poi essere impiegati per correggere la distorsione della lente, calcolare distanze, ricostruire l'immagine 3D di partenza ecc \cite{cameraCalibrationMathWorks}.
 \subsection{Modello di calibrazione}
 Esistono diversi modelli di calibrazione in base al tipo di camera che si intende utilizzare, nel nostro caso possiamo ipotizzare l'utilizzo di uno dei modelli più semplici e cioè quello di una fotocamera con obiettivo stenopeico \ref{fig:pinhole_camera}, nella quale però teniamo conto anche della distorsione della lente. \cite{pinholeCamera} \cite{pinholeCameraModel} 
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/Pinhole-camera.png}
 	\caption{Rappresentazione camera con obiettivo stenopeico}
@@ -283,7 +278,7 @@ Il parametro più importante è la matrice della camera ``camera matrix" che map
 	\item Parametri intrinseci: consentono di trasformare le coordinate della camera 3D nelle coordinate dell'immagine 2D.
 \end{itemize}
 l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera. \ref{fig:calibration_cameramodel_coords}
-\begin{figure}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/calibration-cameramodel-coords.png}
 	\caption{Processo di conversione dal mondo reale 3D all'immagine 2D}
@@ -294,14 +289,14 @@ l'obiettivo della calibrazione è proprio quello di determinare questi due param
 Un altro aspetto fondamentale da tenere in considerazione riguarda la distorsione introdotta dalla lente della camera, nel modello utilizzato infatti si trascura l'uso della lente ma in situazioni reali l'obiettivo gioca un ruolo cruciale, poiché introduce due tipi di distorsione:
 \begin{itemize}
 	\item Distorsione radiale: condizione per la quale i raggi di luce vengono curvati in maniera non uniforme, deformando l'immagine finale a partire dal centro dell'obiettivo. \ref{fig:radial_distortion}
-	\begin{figure}
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.5\linewidth]{./figures/radial_distortion.png}
 		\caption{Distorsione radiale}
 		\label{fig:radial_distortion}
 	\end{figure}
-	\item  Distorsione tangenziale: distorsione che ha luogo nel caso in cui la lente è il piano che si vuole fotografare non sono paralleli. \ref{fig:tangential_distortion}
-	\begin{figure}
+	\item  Distorsione tangenziale: distorsione che ha luogo nel caso in cui la lente e il piano che si vuole fotografare non sono paralleli. \ref{fig:tangential_distortion}
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=0.5\linewidth]{./figures/tangential_distortion.png}
 		\caption{Distorsione tangenziale}
@@ -320,11 +315,8 @@ Questo approccio permette ai dispositivi della rete di auto-organizzarsi present
 Il vincolo riguardante il linguaggio da utilizzare, viene dal fatto che il software attualmente usato dai ricercatori è eseguito dalla JVM e di conseguenza per avere un'interazione più semplice tra i due componenti è importante che anche la parte di visione artificiale sia scritta con un linguaggio compatibile.
 \end{adjustwidth}
 
-L'aspetto che ha portato alla stesura di questa tesi, si deve ricercare nel fatto che questo tipo di sistema deve poter funzionare anche in applicazioni indoor, nelle quali, l'utilizzo del GPS per tenere traccia degli spostamenti dei dispositivi è ostacolato da numerosi fattori quali pareti e strutture che possono ostacolarne il segnale.
+L'aspetto che ha portato alla stesura di questa tesi, si deve ricercare nel fatto che questo tipo di sistema deve poter funzionare anche in applicazioni indoor, nelle quali, l'utilizzo del GPS per tenere traccia degli spostamenti dei dispositivi è ostacolato da numerosi fattori quali pareti e strutture che possono ridurne il segnale.
 
-%PUO DARSI CHE DA QUI IN POI NON VADA BENE PERCHE PARLO DI SOLUZIONI E IN ANALISI DOVREI SOLO DEFINIRE IL PROBLEMA QUINDI POTREI SPOSTARE QUESTA PARTE NEL DESIGN O IMPLEMENTAZIONE E SCRIVERE QUI INVECE COSA DEVO FARE NEL DETTAGLIO CIOE PERCHE STO SVILUPPANDO IL SISTEMA DI VISIONE ARTIFICIALE PER LA NOTTE DEI RICERCATORI E SPIEGARE IN BREVE IL PROGETTO NEL SUO INSIEME
-
-%L'alternativa più ovvia sarebbe sicuramente stata l'impiego di un IPS ``Indoor Positioning System" ma, visti i costi e le complicazioni introdotte da questi tipi di sistemi, per mantenere la soluzione quanto più possibile immediata e soprattutto economica abbiamo deciso di optare per l'utilizzo di un sistema di visione artificiale basato su una videocamera e dei marker fiduciari per identificare gli oggetti
 \section{Requisiti funzionali} \label{sec:requisiti_funzionali}
 \begin{itemize}
 	\item Il sistema deve poter rilevare i dispositivi
@@ -352,15 +344,16 @@ Come già sopracitato, l’oggetto di questa tesi andrà a costituire parte di u
 	\item Far comunicare tra loro i nodi vicini.
 	\item Far organizzare in maniera autonoma i diversi dispositivi attraverso le informazioni raccolte, secondo algoritmi di aggregate computing senza quindi il bisogno di elaborare gli spostamenti e le nuove posizioni in maniera centralizzata.
 \end{enumerate}
-\begin{figure}
+
+Vedi diagramma esemplificativo \ref{fig:domain_diagram}
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./figures/UML/domainDiagram.png}
 	\caption{Diagramma a stati semplificato del dominio}
 	\label{fig:domain_diagram}
 \end{figure}
 \chapter{Design}
-%qui invece devi iniziare a parlare delle soluzioni, scendendo più nel dettaglio e magari mostrando qualche UML ( peccato che io non li abbia :( )
-Come già più volte citato, l'ambito di questa tesi è focalizzato sullo sviluppo della componente di visione artificiale utile a rilevare e seguire i dispositivi nel campo visivo della videocamera.
+L'ambito di questa tesi è focalizzato sullo sviluppo della componente di visione artificiale utile a rilevare e seguire i dispositivi nel campo visivo della videocamera.
 
 Nelle seguenti sezioni vengono illustrate le scelte, operate in osservanza dei requisiti enunciati nelle sezioni \ref{sec:requisiti_funzionali} e \ref{sec:requisiti_non_funzionali} che costituiranno poi l'implementazione del software oggetto della tesi.
 
@@ -369,18 +362,21 @@ Prima però di poter approfondire l'architettura del sistema è necessario stabi
 \section{ArUco markers}
 Dopo un'attenta ricerca volta a determinare quale fosse il metodo più efficacie per poter identificare un qualsiasi oggetto nel campo visivo di una videocamera mi sono imbattuto nei marker ArUco \ref{subsec:aruco_markers}, una tipologia di marker fiduciari \ref{sec:marker_fiduciari} particolarmente utilizzati in contesti di visione artificiale.
 
-La motivazione che mi ha spinto ad utilizzare i marker ArUco deriva dai numerosi vantaggi che questa tecnologia offre, per prima cosa questo tipo di marker è estremamente semplice e scalare, infatti è possibile scegliere fra numerose versioni che si differenziano in base al dizionario utilizzato \ref{subsubsec:dizionario}, inoltre i marker ArUco garantiscono una buona affidabilità anche in condizioni di scarsa illuminazione, scenario da non sottovalutare in una applicazione di visione artificiale, infine un altro vantaggio è sicuramente dato dalla loro velocità di rilevazione che permette quindi l'uso di un gran numero di marker contemporaneamente senza rallentamenti.
+La motivazione che mi ha spinto ad utilizzare i marker ArUco deriva dai numerosi vantaggi che questa tecnologia offre, per prima cosa questo tipo di marker è estremamente semplice e scalare, é infatti possibile scegliere fra numerose versioni che si differenziano in base al dizionario utilizzato \ref{subsubsec:dizionario}, inoltre i marker ArUco garantiscono una buona affidabilità anche in condizioni di scarsa illuminazione, scenario da non sottovalutare in una applicazione di visione artificiale, infine un altro vantaggio è sicuramente dato dalla loro velocità di rilevazione che permette quindi l'uso di un gran numero di marker sulla scena senza rallentamenti.
 
 Per poter utilizzare i marker ArUco è stata utilizzata la libreria offerta da OpenCV \ref{sec:opencv}
 
 \section{Videocamera}
-Per poter rispettare i requisiti imposti in fase di analisi riguardanti la videocamera che il sistema avrebbe utilizzato per ottenere il flusso video, la scelta è ricaduta su una webcam FullHD capace di registrare a 60fps, per contenere i costi, garantire una risoluzione sufficiente al riconoscimento degli oggetti e avere un campo visivo ampio.
+Per poter rispettare i requisiti imposti in fase di analisi riguardanti la videocamera che il sistema avrebbe dovuto utilizzare per ottenere il flusso video, la scelta è ricaduta su una webcam FullHD capace di registrare a 30/60fps, per contenere i costi, garantire una risoluzione sufficiente al riconoscimento degli oggetti e avere un campo visivo ampio.
 
 \section{Architettura}
 Premessa: \textit{L'architettura riguarderà il solo sistema di visione artificiale, realizzato da me come software stand-alone che è poi stato rielaborato dai ricercatori per poterlo integrare con il loro progetto, non verrà trattata l'architettura del sistema finale se non attraverso alcuni cenni utili a comprendere le scelte intraprese.}
 \vspace{0.5cm}
 
-\noindent Finora sono state presentate scelte che riguardano la videocamera e l'utilizzo di marker ArUco per rilevare e identificare gli oggetti nella \gls{scena}, dal punto di vista del software invece per ottenere risultati conformi ai requisiti e di conseguenza un sistema capace di operare anche in condizioni di scarsa luminosità, con un buon livello di precisione e a distanze considerevoli, si è reso necessario l'impiego di sistemi di calibrazione della videocamera oltre che ovviamente a funzionalità per determinare la posizione degli oggetti.
+\textit{Tutti i diagrammi che seguono descrivono l'architettura del sistema, esclusi quelli delle classi, riportano solo i metodi principali e non sono quindi esaustivi.}
+\vspace{0.5cm}
+
+\noindent Finora sono state presentate soluzioni che riguardano la videocamera e l'utilizzo di marker ArUco per rilevare e identificare gli oggetti nella \gls{scena}, dal punto di vista del software invece per ottenere risultati conformi ai requisiti e di conseguenza un sistema capace di operare anche in condizioni di scarsa luminosità, con un buon livello di precisione e a distanze considerevoli, si è reso necessario l'impiego di sistemi di calibrazione della videocamera oltre che ovviamente a funzionalità per determinare la posizione degli oggetti.
 
 Il software da me realizzato si compone di tre parti principali descritte da tre classi java:
 \begin{itemize}
@@ -388,27 +384,23 @@ Il software da me realizzato si compone di tre parti principali descritte da tre
 	\item CameraCalibrator.java
 	\item CameraPose.java
 \end{itemize}
-App.java si occupa di orchestrare le diverse fasi di avvio dell'applicazione, consentendo in una fase iniziale di calibrare la camera attualmente in uso attraverso la classe CameraCalibrator.java e in un secondo momento di calcolare la posa della camera rispetto ai marker sulla scena con la classe CameraPose.java. \ref{fig:architettura}
-\begin{figure}
+\texttt{App.java} si occupa di orchestrare le diverse fasi di avvio dell'applicazione, consentendo in una fase iniziale di calibrare la camera attualmente in uso attraverso la classe \texttt{CameraCalibrator.java} e in un secondo momento di calcolare la posa della camera rispetto ai marker sulla scena con la classe \texttt{CameraPose.java} \ref{fig:architettura}.
+\begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./figures/UML/architecture.png}
 	\caption{Architettura del sistema}
 	\label{fig:architettura}
-\end{figure}5
-
-%Dovrai dire che l'architettura qui riguarda il solo sistema di visione artificiale come stand-alone e che quindi l'architettura del sistema finale sviluppato dai ricercatori non viene introdotta ne menzionata di seguito
-%provvisorio: nell'architettura generale dovrai dire che il sistema si comporrà di tre parti principali, il main che gestirà le varie componenti, del sistema, una parte di calibrazione e una parte di posa e rilevazione.
+\end{figure}
 
 \section{Design dettagliato}
-Entrando più nel dettaglio dell'architettura, il sistema si compone anche di altre due classi denominate: ResolutionEnum.java e InputParameters.java andando quindi a definire il sistema nella sua totalità come in figura: \ref{fig:architettura_completa}
-dove le due classi sono rispettivamente una enum che racchiude tutte \footnote{sono riportate solo le risoluzioni più comuni} le risoluzioni che la camera può utilizzare ed una \acrfull{gui} che permette all'utente di configurare il software in base alle proprie preferenze.
+Entrando più nel dettaglio dell'architettura, il sistema si compone anche di altre due classi denominate: \texttt{ResolutionEnum.java} e \texttt{InputParameters.java} andando quindi a definire il sistema nella sua totalità come in figura: \ref{fig:architettura_completa}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.8\linewidth]{./figures/UML/fullArchitecture.png}
 	\caption{Architettura completa}
 	\label{fig:architettura_completa}
 \end{figure}
-%descrivi precisamente ogni blocco di cui hai fatto lo screen, senza entrare in specifiche di codice e implementazione, potrei anche aggiungere un diagramma a stati che definisce come le varie classi interagiscono tra loro
+dove le due classi sono rispettivamente una enum che racchiude tutte\footnote{sono riportate solo le risoluzioni più comuni} le risoluzioni che la camera può utilizzare ed una \acrfull{gui} che permette all'utente di configurare il software in base alle proprie preferenze in fase di avvio.
 \subsection{App}
 Questa classe rappresenta il punto di ingresso dell'applicazione e si occupa di istanziare tutte le classi necessarie per il corretto funzionamento del sistema all'interno del main. \ref{fig:app}
 \begin{figure}
@@ -418,7 +410,7 @@ Questa classe rappresenta il punto di ingresso dell'applicazione e si occupa di 
 	\label{fig:app}
 \end{figure}
 \subsection{cameraCalibrator}
-La classe cameraCalibrator ricopre un ruolo molto importante, il suo obiettivo è quello di calibrare la camera \ref{sec:calibrazione_della_camera} affinché le immagini ottenute consentano di stabilire correttamente la posizione della stessa rispetto agli oggetti nella scena. \ref{fig:camera_calibrator}.
+La classe \texttt{CameraCalibrator.java} ricopre un ruolo molto importante, il suo obiettivo è quello di calibrare la camera \ref{sec:calibrazione_della_camera} affinché le immagini ottenute consentano di stabilire correttamente la posizione della stessa rispetto agli oggetti nella scena. \ref{fig:camera_calibrator}.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/cameraCalibrator.png}
@@ -426,7 +418,7 @@ La classe cameraCalibrator ricopre un ruolo molto importante, il suo obiettivo �
 	\label{fig:camera_calibrator}
 \end{figure}
 \subsection{cameraPose}
-La classe CameraPose rappresenta il fulcro del progetto, grazie ai metodi sviluppati è possibile ottenere la posa della camera rispetto agli oggetti identificati dai marker ArUco. Le informazioni ricavabili riguardano distanza, posizione e rotazione dei marker, inoltre è anche possibile visualizzarne graficamente lo spostamento e l'orientamento. \ref{fig:camera_pose}
+La classe \texttt{CameraPose.java} rappresenta il fulcro del progetto, grazie ai metodi sviluppati è possibile ottenere la posa della camera rispetto agli oggetti identificati dai marker ArUco. Le informazioni ricavabili riguardano distanza, posizione e rotazione dei marker, inoltre è anche possibile visualizzarne graficamente lo spostamento e l'orientamento. \ref{fig:camera_pose}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/cameraPose.png}
@@ -442,7 +434,7 @@ Enumerazione in grado di fornire i formati più utilizzati per flussi video. \re
 	\label{fig:resolution_enum}
 \end{figure}
 \subsection{inputParameters}
-La classe InputParameters rappresenta una GUI con la quale l'utente finale può interagire, al fine di configurare il programma in base alle proprie specifiche e preferenze. \ref{fig:input_parameters}
+La classe \texttt{InputParameters.java} rappresenta una GUI con la quale l'utente finale può interagire, al fine di configurare il programma in base alle proprie specifiche e preferenze. \ref{fig:input_parameters}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/inputParameters.png}
@@ -450,7 +442,7 @@ La classe InputParameters rappresenta una GUI con la quale l'utente finale può 
 	\label{fig:input_parameters}
 \end{figure}
 \subsection{cameraPoseBlock}
-Nell'immagine \ref{fig:camera_pose_block} viene mostrata l'associazione tra la classe CameraPose.java e la classe ResolutionEnum.java, grazie alla quale la prima riesce ad ottenere l'elenco delle possibili risoluzioni video utilizzate dalla camera.
+Nell'immagine \ref{fig:camera_pose_block} viene mostrata l'associazione tra la classe \texttt{CameraPose.java} e la classe \texttt{ResolutionEnum.java}, grazie alla quale la prima riesce ad ottenere l'elenco delle possibili risoluzioni video utilizzate dalla camera.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/cameraPoseBlock.png}
@@ -458,7 +450,7 @@ Nell'immagine \ref{fig:camera_pose_block} viene mostrata l'associazione tra la c
 	\label{fig:camera_pose_block}
 \end{figure}
 \subsection{UI}
-Nell'associazione in figura \ref{fig:UI} App.java fa uso della classe InputParameters.java per poter istanziare correttamente i parametri utili al software per adattarsi all'ambiente in cui il sistema viene impiegato.
+Nell'associazione in figura \ref{fig:UI} \texttt{App.java} fa uso della classe \texttt{InputParameters.java} per poter istanziare correttamente i parametri utili al software per adattarsi all'ambiente in cui il sistema viene impiegato.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/UI.png}
@@ -466,42 +458,105 @@ Nell'associazione in figura \ref{fig:UI} App.java fa uso della classe InputParam
 	\label{fig:UI}
 \end{figure}
 
-%provvisorio: nel design dettagliato procederai a definire un po' più nel dettaglio le tre componenti enunciate nell'architettura senza entrare troppo nello specifico dell'implementazione ma limitandoti a definire i compiti delle tre parti
-
 \chapter{Implementazione}
 In questo capitolo verranno presentate alcune scelte implementative effettuate durante lo sviluppo software, con particolare attenzione alle fasi di calibrazione e posa della camera.
 
 \section{Creazione del progetto}
-Il software è stato sviluppato all'interno di un progetto java utilizzando Gradle con uno script di build in Kotlin.
+Il software è stato sviluppato all'interno di un progetto Java utilizzando Gradle con uno script di build in Kotlin.
 
 \section{OpenCV}
-Per poter utilizzare funzionalità di visione artificiale, dopo alcune ricerche ho deciso di affidarmi alla libreria OpenCV \ref{sec:opencv}.
+Per poter utilizzare funzionalità di visione artificiale, mi sono affidato alla libreria OpenCV \ref{sec:opencv}.
 
-OpenCV mette infatti a disposizione una serie di moduli, attraverso i quali, si possono realizzare applicazioni di visione artificiale di ogni tipo quali: rilevazione di oggetti, riconoscimento facciale, ecc.
+OpenCV mette a disposizione una serie di moduli, attraverso i quali, si possono realizzare applicazioni di visione artificiale di ogni tipo: rilevazione di oggetti, riconoscimento facciale, ecc.
 
 \subsection{JavaCV}
-JavaCV \ref{subsec:javacv} è un wrapper per OpenCV, durante l'implementazione è infatti stato usato al posto di OpenCV nativo in quanto fornisce metodi semplificati per la creazione della GUI come CanvasFrame e classi di utility semplificate per l'utilizzo in java.
+JavaCV \ref{subsec:javacv} è un wrapper di OpenCV, durante l'implementazione è infatti stato usato al posto di OpenCV nativo in quanto fornisce classi e metodi semplificati per la creazione della GUI come \texttt{CanvasFrame} e classi di utility sviluppate per l'utilizzo in java.
 
-La dipendenza necessaria per utilizzare JavaCV è stata inserità nel file build.gradle.kts \cref{lst:javacv-dependencies}
+La dipendenza necessaria per utilizzare JavaCV è stata inserita nel file build.gradle.kts \cref{lst:javacv-dependencies}
 \lstinputlisting[float,language=Kotlin,label={lst:javacv-dependencies}]{listings/build.gradle.javacv.kts}
 
-\section{App}
-La classe App.java è responsabile dell'inizializzazione dei parametri utili al sistema per funzionare correttamente oltre che dell'avvio della fase di calibrazione e posa della camera.
+\section{Avvio dell'app}
+La classe \texttt{App.java} è responsabile dell'inizializzazione dei parametri del sistema oltre che dell'avvio della fase di calibrazione e posa della camera.
 
-Come prima operazione vengono caricate le classi di OpenCV in maniera dinamica \cref{lst:opencv-loading}, dopodiché la classe App.java si occuperà di istanziare e lanciare la classe InputParameter.java 
-%inserisci il codice di richiamo a InputParameter, e completa la descrizione di App con cameracalibrator.java e camerapose.java
+Come prima operazione vengono caricate le classi di OpenCV in maniera dinamica \cref{lst:opencv-loading}, dopodiché \texttt{App.java} si occuperà di istanziare e lanciare la classe \texttt{InputParameter.java} utile a configurare i parametri dell'app come mostrato dal seguente codice: \cref{lst:input-parameters-instance}, infine sarà il turno di calibrazione e posa della camera, che, come è possibile notare da \cref{lst:calibration-pose-instance} vengono chiamate sequenzialmente al fine di passare i parametri della camera \ref{sec:calibrazione_della_camera} alla fase di posa.
+
 \lstinputlisting[float,language=Java,label={lst:opencv-loading}]{listings/opencv-loading.java}
+\lstinputlisting[float,language=Java,label={lst:input-parameters-instance}]{listings/input-parameters-instance.java}
+\lstinputlisting[float,language=Java,label={lst:calibration-pose-instance}]{listings/calibration-pose-instance.java}
+
 
 \section{Calibrazione}
-%descrivi la fase di calibrazione in maniera meticolosa, ponendo enfasi sulle parti in cui usi funzionalità di javacv e ottieni i parametri come la camera matrix
+La fase di calibrazione della camera rappresenta un aspetto fondamentale del sistema finale in quanto consente di ottenere risultati precisi e affidabili nelle fasi successive.
+
+Per effettuare la calibrazione OpenCV mette a disposizione varie strategie, è possibile infatti utilizzare una scacchiera classica, oppure una scacchiera o una semplice tabella di marker ArUco, nel sistema sviluppato si è optato per la prima soluzione, una scacchiera classica infatti offre un'alta precisione in situazioni ideali e semplicità di implementazione, fattori determinanti visto l'utilizzo di immagini pre acquisite ottenute in condizioni ottimali.
+
+Il ruolo principale di questa classe quindi, è quello di restituire alla chiamata del metodo \texttt{Calibration()} la matrice della camera e i coefficienti di distorsione della lente, per fare ciò sono stati utilizzati i metodi di JavaCV come mostrato nei seguenti frammenti di codice.
+
+\subsection{Rilevazione scacchiera}
+Nel codice \cref{lst:findChessboard} si è fatto uso del metodo \texttt{findChessBoardCorners()} per ottenere le posizioni degli angoli interni della scacchiera, sulla base di un'immagine della stessa convertita in bianco e nero per ridurre la complessità computazionale.
+\lstinputlisting[float,language=Java,label={lst:findChessboard}]{listings/calibration/findChessboard.java}	
+\subsection{Rifinitura angoli}
+Si è ritenuto necessario rifinire le posizioni degli angoli della scacchiera per aumentarne ulteriormente la precisione, analizzando l'immagine a livello di sub-pixel\footnote{tecnica che permette di analizzare lo spazio vuoto tra i pixel, vedi: \url{https://www.pomeas.com/download/2021/5/4/what-subpixel/} per maggiori informazioni} con il metodo \texttt{cornerSubPix()} \cref{lst:cornerSubPix}.
+\lstinputlisting[float,language=Java,label={lst:cornerSubPix}]{listings/calibration/cornerSubPix.java}
+\subsection{Calibrazione}
+La calibrazione vera e propria è svolta dal metodo \texttt{calibrateCamera()}, che oltre a popolare la matrice della camera e dei coefficienti di distorsione, restituisce l'errore quadratico medio di riproiezione dei punti del mondo reale nell'immagine analizzata \cref{lst:calibration}.
+\lstinputlisting[float,language=Java,label={lst:calibration}]{listings/calibration/calibration.java}
+
 \section{Posa}
-%descrivi la classe più importante del codice (questa) andando molto nel dettaglio di alcuni metodi (soprattutto calcPose) dopodichè dai un'idea generale del funzionamento di questa classe riportando i punti salienti
+La classe \texttt{CameraPose.java} si occupa di calcolare la posa della camera rispetto ai marker ArUco e, successivamente, di visualizzare in un ambiente di realtà aumentata la posizione e la rotazione dei marker \ref{fig:camera_pose_example}.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.9\linewidth]{./figures/test/figure2.png}
+	\caption{Posa della camera}
+	\label{fig:camera_pose_example}
+\end{figure}
 
+L'elenco di operazioni che tale classe esegue può essere riassunto in questo modo:
+\begin{enumerate}
+	\item Cattura del frame. \ref{subsec:cattura_del_frame}
+	\item Rilevazione marker. \ref{subsec:rilevazione_marker}
+	\item Inizio posa
+	\begin{enumerate}
+		\item calcolo posa. \ref{subsec:calcolo_posa}
+		\item trascrizione posizione e rotazione di ogni marker sul frame
+		\item calcolo errore di riproiezione
+	\end{enumerate}
+	\item restituzione frame aumentato\footnote{un frame aumentato è un frame al quale sono stati sovrapposti elementi attraverso operazioni di visione artificiale}
+\end{enumerate}
+\subsection{Cattura del frame} \label{subsec:cattura_del_frame}
+Durante la fase di cattura del frame ho dovuto adottare alcune scelte a causa di errori nella stima della posa della camera:
+\subsubsection{Risoluzione}
+La classe utilizzata per la cattura del frame apriva la camera con una risoluzione standard, la quale però non combaciava con quella delle immagini utilizzate per la calibrazione, questa discrepanza faceva si che la successiva fase di posa operasse su immagini di risoluzioni differenti da quelle attese producendo errori nella stima.
 
-%descrivi le varie fasi di calibrazione posa ecc. riferendoti a quanto già espresso durante la fase di analisi e soprattutto design
+Per risolvere tale problema ho creato l'enumerazione \texttt{ResolutionEnum.java} riportata in maniera semplificata\footnote{L'enumerazione presentata al lettore contiene solo alcune risoluzioni tra le quali il sistema può scegliere, la classe utilizzata dal software è più complessa e contiene attributi e metodi per fornire l'altezza e la larghezza di ogni risoluzione} dal seguente codice \cref{lst:ResolutionEnum} in modo da poter sempre impostare la risoluzione massima possibile della webcam (questo perché è logico pensare di avere a disposizione immagini per la calibrazione alla maggior risoluzione possibile).
+\lstinputlisting[float,language=Java,label={lst:ResolutionEnum}]{listings/pose/ResolutionEnum.java}
+\subsubsection{Esposizione}
+La reattività del sistema in termini di capacità di tracciamento degli oggetti è risultata essere scarsa nei primi test qualitativi effettuati, per risolvere tale problema si è operato sul tempo di esposizione della camera, che ha permesso di incrementare notevolmente la reattività a discapito di una riduzione del range operativo\footnote{intervallo nel quale uno strumento può operare correttamente}, rendendo il sistema in grado di rilevare i marker solo in condizioni di luce più elevate. \cref{lst:camera-exposure}
+\lstinputlisting[float,language=Java,label={lst:camera-exposure}]{listings/pose/camera-exposure.java}
 
-%dovrai parlare meglio anche delle funzioni di openCv dato che nel design hai appena accennato a OpenCV
+È possibile modificare il valore dell'esposizione della camera per ottenere un sistema più reattivo decrementandolo, o per poter operare in condizioni di scarsa luminosità incrementandolo.
+\subsection{Rilevazione marker} \label{subsec:rilevazione_marker}
+Durante il calcolo della posa mi sono reso conto che gran parte del tempo veniva impiegato nella fase di rilevazione del marker, rallentando l'intero processo, per risolvere tale problema ho deciso di modificare la dimensione del frame ottenuto prima di rilevare i marker, dividendo altezza e larghezza per un fattore arbitrario \cref{lst:resize-frame}, in modo da passare al metodo \texttt{detectMarkers()} un'immagine più semplice da elaborare e di conseguenza velocizzare il processo \cref{lst:detection-and-rescale-points}.
+\lstinputlisting[float,language=Java,label={lst:resize-frame}]{listings/pose/resize-frame.java}
+\lstinputlisting[float,language=Java,label={lst:detection-and-rescale-points}]{listings/pose/detection-and-rescalePoints.java}
+
+Adottando questa soluzione bisogna però fare attenzione a due aspetti:
+\begin{enumerate}
+	\item Risoluzione troppo bassa: dividendo il frame ottenuto per un fattore arbitrario si rischia di ottenere immagini di bassa risoluzione, questo può portare ad una perdita significativa della precisione in casi in cui i marker sono piccoli o peggio all'impossibilità di rilevarli.
+	\item Posizioni degli angoli dei marker falsati: avendo in questo caso effettuato la rilevazione su un'immagine ristretta, le posizioni degli angoli dei marker saranno relative a tale immagine, per poter tornare ad utilizzare il frame di partenza nelle successive fasi è sufficiente chiamare il metodo \texttt{rescalePoints()} \cref{lst:rescale-points}, in grado di tradurre le posizioni degli angoli dei marker ottenute sull'immagine ristretta nelle coordinate dell'immagine originale.
+	\lstinputlisting[float,language=Java,label={lst:rescale-points}]{listings/pose/rescalePoints.java}
+\end{enumerate}
+\subsection{Calcolo Posa} \label{subsec:calcolo_posa}
+Questa fase rappresenta il fine ultimo del sistema e cioè stabilire una relazione tra la posizione della camera e la posizione dei marker, grazie ad OpenCV questa operazione può essere svolta con il metodo \texttt{solvePnP()}
+che restituisce i vettori di rotazione e traslazione in grado di tradurre le coordinate 3D nelle coordinate 2D della camera \cref{lst:solvePnP}.
+
+Come è possibile vedere da \ref{fig:camera_pose} la classe \texttt{CameraPose.java} mette a disposizione altri due metodi per la stima della posa: \texttt{CalcSinglePose(VideoCapture cap)} e \texttt{CalcSinglePose()} in grado ottenere la posa per un solo frame e ritornare i parametri che descrivono rotazione, traslazione e id di ogni marker rilevato.
+I due metodi differiscono solamente per un parametro che rappresenta l'interfaccia usata per ottenere il frame, il metodo che ne è sprovvisto dovrà ad ogni chiamata istanziare un \texttt{VideoCapture}, rallentando le successive fasi di calcolo della posa in attesa del frame.
+\lstinputlisting[float,language=Java,label={lst:solvePnP}]{listings/pose/solvePnP.java}
 \chapter{Valutazione}
+%parla anche dei requisiti funzionali rispettati
+%parla di errore di riproiezione (sia calibrazione che poi durante la posa), parla anche di test sperimentali effettuati sul campo con misurazioni ecc...
+%parla di tempo di esecuzione della posa
 %parla dei test effettuati fisicamente in taverna e dei test con il robot sempre che possano essere considerati test, poi guarda le altre tesi per confrontarti se va bene quello che vuoi dire
 \chapter{Conclusioni}
 %di che il sistema funziona ed è preciso
