@@ -8,12 +8,14 @@
 \usepackage{hyperref}
 \usepackage{biblatex}
 \usepackage{changepage}
+\usepackage{enumitem}
 \usepackage[acronym]{glossaries}
 \addbibresource{bibliography.bib}
 
 \school{\unibo}
 \programme{Corso di Laurea in Ingegneria e Scienze Informatiche}
 \title{Sviluppo di un sistema di visione artificiale per la rilevazione e la stima della posa basata su marker ArUco in Java}
+%\title{Sviluppo di un sistema di visione artificiale per la rilevazione e localizzazione di marker ArUco in un contesto di Aggregate computing}
 \author{Bacchini Lorenzo}
 \date{\today}
 \subject{Programmazione ad oggetti}
@@ -59,8 +61,18 @@
 
 \frontmatter\frontispiece
 
-\begin{abstract}	
-Max 2000 characters, strict.
+\begin{abstract}
+Il paradigma dell'aggregate computing rappresenta un nuovo approccio alla programmazione distribuita, focalizzando l'attenzione sulla definizione di comportamenti globali che vengono poi interpretati dai singoli dispositivi, l'elaborazione finale non avviene dunque su un sistema esterno, ma sono i dispositivi stessi a comunicare tra loro per prendere decisioni basate sul raggiungimento di un fine comune.
+
+In questo contesto si inserisce un progetto sviluppato dai ricercatori dell'università di Bologna, volto a gestire uno sciame di robot o droni secondo algoritmi distribuiti e comportamenti auto-organizzativi.
+Generalmente in sistemi come quello sopra citato la localizzazione dei robot avviene grazie a sistemi di posizionamento satellitari, nel caso in questione però è necessaria l'implementazione di una soluzione in grado di operare anche in ambito indoor, mantenendo costi contenuti e un'infrastruttura quanto più semplice possibile.
+
+Al giorno d'oggi la visione artificiale trova applicazioni in una grande vastità di settori, dalla ricerca all'ambito industriale, con lo scopo di replicare la vista umana. L'uso di tali tecniche è ormai supportato da numerose librerie software ed è largamente diffuso, pertanto si è scelto di analizzare tale approccio al problema posto, sviluppando in questa tesi un sistema di posizionamento basato sul riconoscimento di marker ArUco, ottenuto grazie all'utilizzo della libreria di visione artificiale OpenCV.
+
+I risultati conseguiti in questa dissertazione dimostrano la precisione dei sistemi di localizzazione basati su processi di visione artificiale analizzando però i limiti di questa tecnologia in termini di condizioni ambientali e contesti di utilizzo.
+\begin{center}
+	Di seguito viene fornito il link al \href{https://doi.org/10.5281/zenodo.14039135}{sistema sviluppato}
+\end{center}
 \end{abstract}
 
 \begin{dedication} % this is optional
@@ -68,37 +80,37 @@ Optional. Max a few lines.
 \end{dedication}
 
 %----------------------------------------------------------------------------------------
-\tableofcontents   
-\listoffigures     % (optional) comment if empty
-\lstlistoflistings % (optional) comment if empty
+\tableofcontents
+\listoffigures
+\lstlistoflistings
 %----------------------------------------------------------------------------------------
 
 \mainmatter
 
 %----------------------------------------------------------------------------------------
 \chapter{Introduzione}
-questo capitolo lo scriverò alla fine ma devo ricordarmi di dire che il mio contributo al progetto è stato particolare perché in un ambiente outdoor non sarebbe stato necessario l'utilizzo di marker aruco e camere, ma sarebbe bastato il GPS \label{chap:introduction}
-%----------------------------------------------------------------------------------------
+Il mondo del lavoro e la vita di tutti i giorni stanno notevolmente cambiando grazie all'avvento di nuove tecnologie, che in maniera più o meno evidente stanno invadendo la nostra quotidianità, ne sono la prova la moltitudine di dispositivi con la quale interagiamo costantemente come smartphone, smartwatch, smartbands, smartglasses ecc.
+Anche in ambito industriale stiamo assistendo alla formazione di quella che viene chiamata ``Industria 4.0" la quale promette di portare gli attuali sistemi informatici e di automazione ad un livello successivo basato sulla collaborazione e comunicazione degli stessi.
+Un tema emergente se parliamo dunque di sistemi distribuiti in grado di comunicare tra loro per raggiungere un'obiettivo comune è rappresentato dal paradigma dell'aggregate computing.
 
-Write your intro here.
-\sidenote{Add sidenotes in this way. They are named after the author of the thesis}
+Il paradigma dell'aggregate computing si differenzia dalla programmazione distribuita in quanto maggiore enfasi è posta sulla definizione di un obiettivo globale che il sistema deve raggiungere piuttosto che sulle regole e sui singoli compiti che ogni nodo deve portare a termine elevando così il livello di astrazione.
 
-You can use acronyms that your defined previously,
-such as 
-%
-If you use acronyms twice,
-they will be written in full only once
-(indeed, you can mention the now without it being fully explained).
-%
-In some cases, you may need a plural form of the acronym.
-%
-For instance,
-that you are discussing,
-you may need both  and .
+A partire da questo nuovo paradigma i ricercatori dell'università di Bologna hanno sviluppato un software capace di controllare una serie di robot/droni, sulla base di concetti derivati dalla robotica degli sciami, che consente ai dispositivi di auto-organizzarsi e conoscere lo stato generale del sistema scambiando informazioni con i propri vicini.
+Un aspetto fondamentale del progetto sopracitato è dato dalla possibilità di determinare in ogni istante la posizione dei robot, operazione triviale in ambito outdoor, dove per localizzare i dispositivi è sufficiente un segnale di posizionamento satellitare per ottenere dei risultati precisi, dovendo però nel nostro caso utilizzare tale sistema all'interno di edifici, dove un segnale GPS non sarebbe in grado di fornire una precisione sufficiente rende indispensabile esplorare approcci alternativi.
 
-\paragraph{Structure of the Thesis}
+La visione artificiale rappresenta una soluzione economica e poco complessa a tecnologie ben più articolate e soprattutto costose in materia di sistemi di posizionamento indoor, l'obiettivo di questa tesi è quello di approfondire l'utilizzo di tecniche di visione artificiale con l'aiuto di librerie software come OpenCV con il fine ultimo di ottenere un applicativo in grado di rilevare e localizzare i dispositivi in una determinata scena, così da fornire ai ricercatori dell'università di Bologna un sistema finito da poter integrare all'interno del loro progetto per renderlo utilizzabile anche in contesti indoor.
 
-\note{At the end, describe the structure of the paper}
+\paragraph{Struttura della tesi}
+
+Nel primo capitolo (Background) vengono affrontati i temi utili a comprendere il contenuto di questa dissertazione, andando a definire i concetti principali di visione artificiale e aggregate computing ma anche le singole tecnologie utilizzate in merito a marker fiduciari, calibrazione della camera e OpenCV.
+
+Seguono poi il secondo capitolo (Analisi) dove vengono presentati i requisiti che il sistema finale dovrà soddisfare e il terzo capitolo (Design), dove vengono analizzate le scelte intraprese e l'architettura del software, prima nella sua versione generale poi nel dettaglio.
+
+Il quarto capitolo cioè quello dedicato all'Implementazione riporta tutti i passaggi effettuati per raggiungere l'obiettivo prefissato da questa tesi, analizzando le principali scelte implementative e mostrando al lettore il software degno di nota prodotto.
+
+Il quinto capitolo (Valutazione) mostra una serie di test effettuati sul software durante e al termine del suo sviluppo, che consentono di analizzare i risultati ottenuti, andando anche a valutare se i requisiti posti in fase di analisi siano stati correttamente soddisfatti.
+
+Nel sesto ed ultimo capitolo (Conclusioni) vengono riportate alcune considerazioni sul lavoro svolto e su come esso possa essere ulteriormente sviluppato in futuro, ponendo particolare enfasi sui risultati ottenuti e mostrando un esempio operativo del sistema finale.
 
 \chapter{Background}
 
@@ -277,7 +289,7 @@ Il parametro più importante è la matrice della camera ``camera matrix" che map
 	\item Parametri estrinseci: rappresentano la posizione e rotazione della camera nel mondo reale.
 	\item Parametri intrinseci: consentono di trasformare le coordinate della camera 3D nelle coordinate dell'immagine 2D.
 \end{itemize}
-l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera. \ref{fig:calibration_cameramodel_coords}
+l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera, va però precisato che solo nel caso in cui si debbano utilizzare più camere è necessario includere i parametri estrinseci nella matrice, questo perché le diverse camere devono conoscere le rispettive posizioni, in caso contrario (in presenza di una sola camera) la matrice sarà definita dai soli parametri intrinseci in quanto sarà presente un solo sistema di riferimento (\textbf{Caso in esame}). \ref{fig:calibration_cameramodel_coords}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/calibration-cameramodel-coords.png}
@@ -318,24 +330,24 @@ Il vincolo riguardante il linguaggio da utilizzare, viene dal fatto che il softw
 L'aspetto che ha portato alla stesura di questa tesi, si deve ricercare nel fatto che questo tipo di sistema deve poter funzionare anche in applicazioni indoor, nelle quali, l'utilizzo del GPS per tenere traccia degli spostamenti dei dispositivi è ostacolato da numerosi fattori quali pareti e strutture che possono ridurne il segnale.
 
 \section{Requisiti funzionali} \label{sec:requisiti_funzionali}
-\begin{itemize}
+\begin{enumerate}[label=RF\arabic*]
 	\item Il sistema deve poter rilevare i dispositivi
 	\item Il sistema deve poter calcolare distanza, posizione e angolo di rotazione dei dispositivi rispetto ad un punto fissato nello spazio.
 	\item Il sistema dovrà poter essere interrogato per ottenere i risultati computati riguardo il posizionamento dei dispositivi.
-\end{itemize}
+\end{enumerate}
 \section{Requisiti non funzionali} \label{sec:requisiti_non_funzionali}
-\begin{itemize}
+\begin{enumerate}[label=RNF\arabic*]
 	\item Il sistema deve poter rilevare i dispositivi ad una distanza di due/tre metri.
 	\item Il sistema deve essere sufficientemente reattivo da rilevare e tracciare movimenti repentini da parte dei dispositivi.
 	\item Il sistema deve rimanere stabile ed affidabile anche in presenza di condizioni di scarsa illuminazione.
 	\item Il sistema deve essere efficiente al punto che il tempo impiegato per stimare la posizione dei dispositivi non influenzi il tempo di esecuzione del software in cui è utilizzato.
 	\item Il sistema deve essere sufficientemente preciso da garantire un corretto funzionamento generale, senza incorrere in rilevazioni fuorvianti che porterebbero al crash dello stesso.
-\end{itemize}
+\end{enumerate}
 \section{Requisiti tecnologici}
-\begin{itemize}
+\begin{enumerate}[label=RT\arabic*]
 	\item Il sistema deve essere scritto in java o un linguaggio che sia in grado di essere eseguito dalla JVM.
 	\item La videocamera utilizzata per la rilevazione dei dispositivi deve avere una risoluzione minima \gls{FullHD}.
-\end{itemize}
+\end{enumerate}
 \section{Analisi del dominio}
 Come già sopracitato, l’oggetto di questa tesi andrà a costituire parte di un sistema più ampio, il quale, una volta assemblato, sarà in grado di:
 \begin{enumerate}
@@ -554,34 +566,101 @@ Come è possibile vedere da \ref{fig:camera_pose} la classe \texttt{CameraPose.j
 I due metodi differiscono solamente per un parametro che rappresenta l'interfaccia usata per ottenere il frame, il metodo che ne è sprovvisto dovrà ad ogni chiamata istanziare un \texttt{VideoCapture}, rallentando le successive fasi di calcolo della posa in attesa del frame.
 \lstinputlisting[float,language=Java,label={lst:solvePnP}]{listings/pose/solvePnP.java}
 \chapter{Valutazione}
-%parla anche dei requisiti funzionali rispettati
-%parla di errore di riproiezione (sia calibrazione che poi durante la posa), parla anche di test sperimentali effettuati sul campo con misurazioni ecc...
-%parla di tempo di esecuzione della posa
-%parla dei test effettuati fisicamente in taverna e dei test con il robot sempre che possano essere considerati test, poi guarda le altre tesi per confrontarti se va bene quello che vuoi dire
-\chapter{Conclusioni}
-%di che il sistema funziona ed è preciso
-\chapter{Sviluppi futuri}
-%di che potrebbe essere usato in altri contesti indoor magari potenziando camera e hardware e magari modificando calibrazione con charuco board e marker diversi
-\chapter{Ringraziamenti}
+Durante e al termine dello sviluppo del sistema, sono state impiegate diverse tecniche di valutazione del software prodotto, qui di seguito viene illustrata la fase di testing, un esempio operativo del sistema finale e la verifica dei requisiti.
+\section{Testing} \label{sec:testing}
+Una delle fasi di testing più importanti riguarda il calcolo dell'errore di riproiezione\sidenote{L'errore di riproiezione indica quanto l'immagine ottenuta si discosti da quella attesa, il risultato è dato in pixel}, tale parametro è stato calcolato in due fasi: durante la calibrazione per verificare che i parametri della camera fossero stati ottenuti correttamente e durante la fase di posa controllando che le immagini dei marker acquisite rispecchiassero quelle attese.
 
-I suggest referencing stuff as follows: \cref{fig:random-image} or \Cref{fig:random-image}
+In fase di calibrazione il calcolo avviene subito prima di ritornare i valori della camera e quindi dopo aver analizzato tutte le immagini \cref{lst:calibration-reprojection-error}
+durante la stima della posa invece il calcolo dell'errore di riproiezione avviene singolarmente per ogni marker e solo successivamente viene calcolato l'errore quadratico medio sul valore totale \cref{lst:pose-reprojection-error}.
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\linewidth]{figures/random-image.pdf}
-    \caption{Some random image}
-    \label{fig:random-image}
+Con la webcam FullHD utilizzata e 40 immagini di calibrazione il sistema riporta un errore di riproiezione di 0.44 pixel, anche se questo valore può ovviamente variare considerevolmente in base alla camera e al set di immagini utilizzato.
+
+Durante la posa della camera l'errore ottenuto si aggira tra 0.5 e 2.0 pixel, valori accettabili per l'obiettivo del sistema.
+\lstinputlisting[float,language=Java,label={lst:calibration-reprojection-error}]{listings/testing/calibration-reprojectionError.java}
+\lstinputlisting[float,language=Java,label={lst:pose-reprojection-error}]{listings/testing/pose-reprojectionError.java}
+
+\section{Esempio operativo} \label{sec:esempio_operativo}
+\textit{Per comprendere a pieno le misurazioni effettuate di seguito è necessario tenere presente che il sistema traccia i marker a partire dall'angolo in alto a sinistra, di conseguenza le relative posizioni dei marker sono calcolate su quell'angolo.}
+\vspace{0.5cm}
+
+Di seguito è mostrato un esempio operativo del sistema, sono state effettuate tre catture alle immagini ottenute dal software, la prima vede due marker posizionati uno affianco all'altro ad una distanza di 30cm \ref{fig:markers_x}, la seconda vede due marker posizionati uno sotto l'altro ad una distanza di 15cm \ref{fig:markers_y}, l'ultima invece vede due marker ruotati, il primo di 45° mentre il secondo di 90° \ref{fig:markers_rotate}, tutte le misure delle distanze tra i marker sono comprovate da una scala graduata con risoluzione al cm. \sidenote{Purtroppo a causa della qualità della camera utilizzata risulta difficile comprendere le posizioni dei marker rispetto alla scala graduata, tenere quindi conto che lo strumento utilizzato ha un range operativo che va da 0 a 30cm}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./figures/Valutazione/markers_x.png}
+	\caption{Markers posizionati a 30cm sull'asse x}
+	\label{fig:markers_x}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./figures/Valutazione/markers_y.png}
+	\caption{Markers posizionati a 15cm sull'asse y}
+	\label{fig:markers_y}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./figures/Valutazione/markers_rotate.png}
+	\caption{Markers ruotati rispettivamente di 45 e 90 gradi}
+	\label{fig:markers_rotate}
 \end{figure}
 
-\section{Some cool topic}
+\section{Verifica dei requisiti} \label{sec:verifica_dei_requisiti}
+In ultimo è stato verificato che tutti i requisiti posti in fase di analisi fossero stati soddisfatti.
+\begin{enumerate}[label=RF\arabic*]
+	\item Il sistema rileva correttamente i marker ArUco nel campo visivo della camera.
+	\item Il sistema è in grado di calcolare la posizione e la rotazione dei marker rispetto alla camera.
+	\item Il sistema fornisce le classi \texttt{CalcSinglePose(VideoCapture cap)} e \texttt{CalcSinglePose()} per poter ottenere i risultati computati (posizione, rotazione, identificativo) sotto forma di matrici.
+\end{enumerate} 
+\begin{enumerate}[label=RNF\arabic*]
+	\item Il sistema è in grado di rilevare i marker ad una distanza di 2/3 metri, gli unici vincoli riscontrati sono le dimensioni dei marker che devono essere di almeno 6/7cm (misura del lato del marker) e l'illuminazione della scena che deve essere sufficiente.
+	\item Il sistema è in grado di tracciare lo spostamento dei marker in maniera molto efficace a patto che la l'esposizione della camera sia regolata correttamente e che le condizioni di illuminazione lo permettano. \footnote{l'esposizione e l'illuminazione sono parametri strettamente correlati in quanto decrementando l'esposizione la luce catturata dal sensore potrebbe non essere più sufficiente, di conseguenza l'illuminazione della scena deve essere maggiore per garantire il funzionamento del sistema.}
+	\item Il sistema resta affidabile anche in condizioni di scarsa luminosità purché il tempo di esposizione venga incrementato rendendo di conseguenza il sistema meno reattivo.
+	\item Il sistema è rapido ed efficiente, è stato infatti misurato che con un numero di circa 30 marker sulla scena il tempo di cattura dell'immagine, sommato al tempo di calcolo della posizione di ogni marker non supera mai i 50ms (test eseguiti su un laptop di fascia media).
+	\item Il sistema è preciso come dimostrato dall'esempio operativo \ref{sec:esempio_operativo} e dal testing del sistema \ref{sec:testing}
+\end{enumerate} 
+\begin{enumerate}[label=RT\arabic*]
+	\item Il sistema è stato scritto in linguaggio Java
+	\item È stata utilizzata una webcam FullHD 30fps durante lo sviluppo del sistema
+\end{enumerate} 
+\chapter{Conclusioni}
+In conclusione si può ritenere l'obiettivo di questa tesi soddisfatto, lo scopo era infatti quello di sviluppare un sistema di visione artificiale in grado di rilevare e tracciare dei dispositivi nel campo visivo di una videocamera, sistema da integrare poi ad un progetto sviluppato dai ricercatori dell'università di Bologna, volto a controllare uno sciame di robot in un contesto indoor.
 
-\chapter{Contribution}
+Durante lo sviluppo software sono state affrontate alcune sfide utili a comprendere il funzionamento della camera, delle immagini ottenute da essa e di come queste vengano rappresentate internamente al calcolatore, per fare ciò sono state di grande aiuto le funzionalità offerte da OpenCV, grazie alle quali il progetto ha potuto prendere forma e concretizzarsi.
 
-You may also put some code snippet (which is NOT float by default), eg: \cref{lst:random-code}.
+Particolare attenzione è stata posta a rendere il sistema utilizzabile in molteplici condizioni che possono variare per illuminazione, velocità di rilevazione e numero di dispositivi nella scena.
 
-\lstinputlisting[float,language=Java,label={lst:random-code}]{listings/HelloWorld.java}
+Come mostrato da \ref{sec:verifica_dei_requisiti} tutti i requisiti sono stati soddisfatti anche se, per rispettare alcuni di essi è stato necessario scendere a compromessi in termini di precisione/illuminazione, è infatti emerso che a causa delle proprietà fisiche della camera per poter rilevare i dispositivi ad una data velocità di movimento è necessario avere un determinato tempo di esposizione, il quale però riduce inevitabilmente la luce catturata dal sensore, richiedendo un ambiente più luminoso per il corretto funzionamento del sistema.
 
-\section{Fancy formulas here}
+Qui di seguito sono mostrati i risultati del progetto completo una volta integrato a quello sviluppato dai ricercatori dell'università di Bologna.
+
+\vspace{0.5cm}
+\textit{I risultati proposti si riferiscono alla manifestazione della Notte dei ricercatori svoltasi il 27 settembre 2024, durante la quale è stato mostrato al pubblico il progetto finale nel suo insieme.}
+\vspace{0.5cm}
+
+Nella prima immagine è possibile vedere i robot utilizzati, ognuno con il proprio marker ArUco, già disposti in formazione attorno ad un robot centrale \ref{fig:robot}, nella seconda immagine invece è riportato il sistema completo nel quale, a terra sono presenti i robot mentre in alto è possibile notare una camera connessa ad un computer, grazie alla quale è possibile ottenere le posizioni dei robot \ref{fig:system}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./figures/Valutazione/robot1.jpg}
+	\caption{Robot identificati da marker ArUco}
+	\label{fig:robot}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth, angle=-90]{./figures/Valutazione/system.jpg}
+	\caption{Sistema completo}
+	\label{fig:system}
+\end{figure}
+
+\section{Sviluppi futuri}
+Qui di seguito sono proposti alcuni possibili sviluppi futuri:
+\begin{itemize}
+	\item Miglioramento hardware (calcolatore e fotocamera) per rendere il sistema più rapido e preciso.
+	\item Aggiunta di più camere per ampliare il campo visivo e garantire una stima della profondità più accurata.
+	\item Utilizzo di sistemi alternativi per calibrare la camera come ChArUco boards, così da permettere calibrazioni precise e allo stesso tempo flessibili in caso di occlusioni.
+\end{itemize}
+\chapter*{Ringraziamenti}
 
 %----------------------------------------------------------------------------------------
 % BIBLIOGRAPHY
@@ -589,13 +668,8 @@ You may also put some code snippet (which is NOT float by default), eg: \cref{ls
 
 \backmatter
 
-\nocite{*} % Remove this as soon as you have the first citation
 \printglossary[type=\acronymtype]
 \printglossary
 \printbibliography
-
-\begin{acknowledgements} % this is optional
-Optional. Max 1 page.
-\end{acknowledgements}
 
 \end{document}
