@@ -14,8 +14,8 @@
 
 \school{\unibo}
 \programme{Corso di Laurea in Ingegneria e Scienze Informatiche}
-\title{Sviluppo di un sistema di visione artificiale per la rilevazione e la stima della posa basata su marker ArUco in Java}
-%\title{Sviluppo di un sistema di visione artificiale per la rilevazione e localizzazione di marker ArUco in un contesto di Aggregate computing}
+%\title{Sviluppo di un sistema di visione artificiale per la rilevazione e la stima della posa basata su marker ArUco in Java}
+\title{Sviluppo di un sistema di visione artificiale per la rilevazione e localizzazione di marker ArUco in un contesto di Aggregate computing}
 \author{Bacchini Lorenzo}
 \date{\today}
 \subject{Programmazione ad oggetti}
@@ -75,7 +75,7 @@ I risultati conseguiti in questa dissertazione dimostrano la precisione dei sist
 \end{center}
 \end{abstract}
 
-\begin{dedication} % this is optional
+\begin{dedication}
 Optional. Max a few lines.
 \end{dedication}
 
@@ -90,10 +90,10 @@ Optional. Max a few lines.
 %----------------------------------------------------------------------------------------
 \chapter{Introduzione}
 Il mondo del lavoro e la vita di tutti i giorni stanno notevolmente cambiando grazie all'avvento di nuove tecnologie, che in maniera più o meno evidente stanno invadendo la nostra quotidianità, ne sono la prova la moltitudine di dispositivi con la quale interagiamo costantemente come smartphone, smartwatch, smartbands, smartglasses ecc.
-Anche in ambito industriale stiamo assistendo alla formazione di quella che viene chiamata ``Industria 4.0" la quale promette di portare gli attuali sistemi informatici e di automazione ad un livello successivo basato sulla collaborazione e comunicazione degli stessi.
+Anche in ambito industriale stiamo assistendo alla formazione di quella che viene comunemente chiamata ``Industria 4.0" la quale promette di portare gli attuali sistemi informatici e di automazione ad un livello successivo basato sulla collaborazione e comunicazione degli stessi.
 Un tema emergente se parliamo dunque di sistemi distribuiti in grado di comunicare tra loro per raggiungere un'obiettivo comune è rappresentato dal paradigma dell'aggregate computing.
 
-Il paradigma dell'aggregate computing si differenzia dalla programmazione distribuita in quanto maggiore enfasi è posta sulla definizione di un obiettivo globale che il sistema deve raggiungere piuttosto che sulle regole e sui singoli compiti che ogni nodo deve portare a termine elevando così il livello di astrazione.
+Il paradigma dell'aggregate computing si differenzia dalla programmazione distribuita in quanto maggiore enfasi è posta sulla definizione di un obiettivo globale che il sistema deve raggiungere, piuttosto che sulle regole e sui singoli compiti che ogni nodo deve portare a termine, elevando così il livello di astrazione.
 
 A partire da questo nuovo paradigma i ricercatori dell'università di Bologna hanno sviluppato un software capace di controllare una serie di robot/droni, sulla base di concetti derivati dalla robotica degli sciami, che consente ai dispositivi di auto-organizzarsi e conoscere lo stato generale del sistema scambiando informazioni con i propri vicini.
 Un aspetto fondamentale del progetto sopracitato è dato dalla possibilità di determinare in ogni istante la posizione dei robot, operazione triviale in ambito outdoor, dove per localizzare i dispositivi è sufficiente un segnale di posizionamento satellitare per ottenere dei risultati precisi, dovendo però nel nostro caso utilizzare tale sistema all'interno di edifici, dove un segnale GPS non sarebbe in grado di fornire una precisione sufficiente rende indispensabile esplorare approcci alternativi.
@@ -218,7 +218,7 @@ Ogni ArUco marker appartiene ad un dizionario il quale ne specifica la dimension
 OpenCV è una libreria multi-piattaforma rilasciata su una licenza open-source, questo ha portato durante gli anni ad una crescita continua grazie anche all'aiuto della community, che ha permesso alla libreria in questione di diventare una tra le più importanti nel suo ambito. \cite{baggio2015opencv} \cite{OpenCVMainPage}
 
 \subsection{JavaCV} \label{subsec:javacv}
-JavaCV è un wrapper per la libreria OpenCV, in grado di fornire, oltre a tutte le funzionalità di OpenCV, anche molti metodi per processare immagini e video, questo fa si che con una singola dipendenza si sia in grado di utilizzare tutte le funzionalità in maniera agevolata attraverso il wrapper, senza dover interagire con il codice nativo di OpenCV \cite{javaCVRepo}
+JavaCV è un wrapper per la libreria OpenCV, in grado di fornire, oltre a tutte le funzionalità di OpenCV, anche molti metodi per processare immagini e video, questo fa si che con una singola dipendenza si sia in grado di utilizzare tutte le funzionalità in maniera agevolata per gli sviluppatori Java attraverso il wrapper, senza dover interagire con il codice nativo di OpenCV \cite{javaCVRepo}
 
 \section{Aggregate Computing}
 Prima di poterci addentrare nel concetto di aggregate computing è importante spendere due parole per introdurre i sistemi distribuiti dai quali poi saremo in grado di derivare l'idea alla base dell'aggregate computing.
@@ -289,7 +289,7 @@ Il parametro più importante è la matrice della camera ``camera matrix" che map
 	\item Parametri estrinseci: rappresentano la posizione e rotazione della camera nel mondo reale.
 	\item Parametri intrinseci: consentono di trasformare le coordinate della camera 3D nelle coordinate dell'immagine 2D.
 \end{itemize}
-l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera, va però precisato che solo nel caso in cui si debbano utilizzare più camere è necessario includere i parametri estrinseci nella matrice, questo perché le diverse camere devono conoscere le rispettive posizioni, in caso contrario (in presenza di una sola camera) la matrice sarà definita dai soli parametri intrinseci in quanto sarà presente un solo sistema di riferimento (\textbf{Caso in esame}). \ref{fig:calibration_cameramodel_coords}
+l'obiettivo della calibrazione è proprio quello di determinare questi due parametri così da poter calcolare la matrice della camera, va però precisato che solo nel caso in cui si debbano utilizzare più camere è necessario includere i parametri estrinseci nella matrice, questo perché le diverse camere devono conoscere le rispettive posizioni, in caso contrario (in presenza di una sola camera) la matrice sarà definita dai soli parametri intrinseci in quanto sarà presente un solo sistema di riferimento (\textbf{come nel caso in esame}). \ref{fig:calibration_cameramodel_coords}
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/calibration-cameramodel-coords.png}
@@ -317,14 +317,14 @@ Un altro aspetto fondamentale da tenere in considerazione riguarda la distorsion
 \end{itemize} 
 
 \chapter{Analisi}
-Il progetto si pone l'obiettivo di creare un sistema software sviluppato in java o altro linguaggio che sia in grado di essere eseguito sulla \acrfull{jvm}, con il compito di localizzare e tracciare gli spostamenti di alcuni dispositivi\footnote{oggetti di ogni genere e tipo dei quali si vuole conoscere posizione e rotazione chiamati genericamente dispositivi in questa dissertazione} nel campo visivo di una videocamera.
+Il progetto si pone l'obiettivo di creare un sistema software sviluppato in java o altro linguaggio che sia in grado di essere eseguito sulla \acrfull{jvm}, con il compito di localizzare e tracciare gli spostamenti di alcuni dispositivi\footnote{oggetti di ogni genere e tipo dei quali si vuole conoscere posizione e rotazione chiamati più volte dispositivi in questa dissertazione} nel campo visivo di una videocamera.
 
 Per poter analizzare correttamente il sistema in questione è necessario però fare un passo indietro, per introdurre il contesto nel quale dovrà inserirsi:
 \begin{adjustwidth}{1cm}{0cm}
 l'argomento di questa tesi rappresenta solo un componente di un progetto più complesso, sviluppato dai ricercatori dell'università di Bologna, con l'obiettivo di gestire una serie di dispositivi (robot, droni ecc.), connessi tra loro, secondo il paradigma dell'aggregate computing.
 Questo approccio permette ai dispositivi della rete di auto-organizzarsi presentando le caratteristiche tipiche della robotica degli sciami.
 
-Il vincolo riguardante il linguaggio da utilizzare, viene dal fatto che il software attualmente usato dai ricercatori è eseguito dalla JVM e di conseguenza per avere un'interazione più semplice tra i due componenti è importante che anche la parte di visione artificiale sia scritta con un linguaggio compatibile.
+Il vincolo riguardante il linguaggio da utilizzare, viene dal fatto che il software attualmente usato dai ricercatori è eseguito dalla JVM e di conseguenza per avere un'interazione più semplice tra i due componenti è importante che anche la parte di localizzazione sia scritta con un linguaggio compatibile.
 \end{adjustwidth}
 
 L'aspetto che ha portato alla stesura di questa tesi, si deve ricercare nel fatto che questo tipo di sistema deve poter funzionare anche in applicazioni indoor, nelle quali, l'utilizzo del GPS per tenere traccia degli spostamenti dei dispositivi è ostacolato da numerosi fattori quali pareti e strutture che possono ridurne il segnale.
@@ -333,7 +333,7 @@ L'aspetto che ha portato alla stesura di questa tesi, si deve ricercare nel fatt
 \begin{enumerate}[label=RF\arabic*]
 	\item Il sistema deve poter rilevare i dispositivi
 	\item Il sistema deve poter calcolare distanza, posizione e angolo di rotazione dei dispositivi rispetto ad un punto fissato nello spazio.
-	\item Il sistema dovrà poter essere interrogato per ottenere i risultati computati riguardo il posizionamento dei dispositivi.
+	\item Il sistema dovrà poter essere interrogato per ottenere i risultati computati riguardo al posizionamento dei dispositivi.
 \end{enumerate}
 \section{Requisiti non funzionali} \label{sec:requisiti_non_funzionali}
 \begin{enumerate}[label=RNF\arabic*]
@@ -379,7 +379,7 @@ La motivazione che mi ha spinto ad utilizzare i marker ArUco deriva dai numerosi
 Per poter utilizzare i marker ArUco è stata utilizzata la libreria offerta da OpenCV \ref{sec:opencv}
 
 \section{Videocamera}
-Per poter rispettare i requisiti imposti in fase di analisi riguardanti la videocamera che il sistema avrebbe dovuto utilizzare per ottenere il flusso video, la scelta è ricaduta su una webcam FullHD capace di registrare a 30/60fps, per contenere i costi, garantire una risoluzione sufficiente al riconoscimento degli oggetti e avere un campo visivo ampio.
+Per poter rispettare i requisiti imposti in fase di analisi riguardanti la videocamera da utilizzare per ottenere il flusso video, la scelta è ricaduta su una webcam FullHD capace di registrare a 30/60fps, per contenere i costi, garantire una risoluzione sufficiente al riconoscimento degli oggetti e avere un campo visivo ampio.
 
 \section{Architettura}
 Premessa: \textit{L'architettura riguarderà il solo sistema di visione artificiale, realizzato da me come software stand-alone che è poi stato rielaborato dai ricercatori per poterlo integrare con il loro progetto, non verrà trattata l'architettura del sistema finale se non attraverso alcuni cenni utili a comprendere le scelte intraprese.}
@@ -430,7 +430,7 @@ La classe \texttt{CameraCalibrator.java} ricopre un ruolo molto importante, il s
 	\label{fig:camera_calibrator}
 \end{figure}
 \subsection{cameraPose}
-La classe \texttt{CameraPose.java} rappresenta il fulcro del progetto, grazie ai metodi sviluppati è possibile ottenere la posa della camera rispetto agli oggetti identificati dai marker ArUco. Le informazioni ricavabili riguardano distanza, posizione e rotazione dei marker, inoltre è anche possibile visualizzarne graficamente lo spostamento e l'orientamento. \ref{fig:camera_pose}
+La classe \texttt{CameraPose.java} rappresenta il fulcro del progetto, grazie ai metodi sviluppati è possibile ottenere la posa della camera rispetto agli oggetti identificati dai marker ArUco. Le informazioni ottenute riguardano distanza, posizione e rotazione dei marker, inoltre è anche possibile visualizzarne graficamente lo spostamento e l'orientamento. \ref{fig:camera_pose}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/cameraPose.png}
@@ -462,7 +462,7 @@ Nell'immagine \ref{fig:camera_pose_block} viene mostrata l'associazione tra la c
 	\label{fig:camera_pose_block}
 \end{figure}
 \subsection{UI}
-Nell'associazione in figura \ref{fig:UI} \texttt{App.java} fa uso della classe \texttt{InputParameters.java} per poter istanziare correttamente i parametri utili al software per adattarsi all'ambiente in cui il sistema viene impiegato.
+Nell'associazione in figura \ref{fig:UI} \texttt{App.java} fa uso della classe \texttt{InputParameters.java} per poter istanziare correttamente i parametri utili al sistema per adattarsi all'ambiente in cui viene impiegato.
 \begin{figure}
 	\centering
 	\includegraphics[width=0.5\linewidth]{./figures/UML/UI.png}
@@ -500,7 +500,7 @@ Come prima operazione vengono caricate le classi di OpenCV in maniera dinamica \
 \section{Calibrazione}
 La fase di calibrazione della camera rappresenta un aspetto fondamentale del sistema finale in quanto consente di ottenere risultati precisi e affidabili nelle fasi successive.
 
-Per effettuare la calibrazione OpenCV mette a disposizione varie strategie, è possibile infatti utilizzare una scacchiera classica, oppure una scacchiera o una semplice tabella di marker ArUco, nel sistema sviluppato si è optato per la prima soluzione, una scacchiera classica infatti offre un'alta precisione in situazioni ideali e semplicità di implementazione, fattori determinanti visto l'utilizzo di immagini pre acquisite ottenute in condizioni ottimali.
+Per effettuare la calibrazione OpenCV mette a disposizione varie strategie, è possibile infatti utilizzare una scacchiera classica, oppure una scacchiera ArUco o una semplice tabella di marker ArUco, nel sistema sviluppato si è optato per la prima soluzione, una scacchiera classica infatti offre un'alta precisione in situazioni ideali e semplicità di implementazione, fattori determinanti visto l'utilizzo di immagini pre acquisite ottenute in condizioni ottimali.
 
 Il ruolo principale di questa classe quindi, è quello di restituire alla chiamata del metodo \texttt{Calibration()} la matrice della camera e i coefficienti di distorsione della lente, per fare ciò sono stati utilizzati i metodi di JavaCV come mostrato nei seguenti frammenti di codice.
 
@@ -536,9 +536,9 @@ L'elenco di operazioni che tale classe esegue può essere riassunto in questo mo
 	\item restituzione frame aumentato\footnote{un frame aumentato è un frame al quale sono stati sovrapposti elementi attraverso operazioni di visione artificiale}
 \end{enumerate}
 \subsection{Cattura del frame} \label{subsec:cattura_del_frame}
-Durante la fase di cattura del frame ho dovuto adottare alcune scelte a causa di errori nella stima della posa della camera:
+Durante la fase di cattura del frame sono state operate alcune scelte per garantire il corretto funzionamento del sistema.
 \subsubsection{Risoluzione}
-La classe utilizzata per la cattura del frame apriva la camera con una risoluzione standard, la quale però non combaciava con quella delle immagini utilizzate per la calibrazione, questa discrepanza faceva si che la successiva fase di posa operasse su immagini di risoluzioni differenti da quelle attese producendo errori nella stima.
+La classe utilizzata per la cattura del frame apriva la camera con una risoluzione standard, la quale però non combaciava con quella delle immagini utilizzate per la calibrazione, questa discrepanza faceva si che la successiva fase di posa lavorasse su immagini con risoluzioni differenti da quelle attese producendo errori nella stima.
 
 Per risolvere tale problema ho creato l'enumerazione \texttt{ResolutionEnum.java} riportata in maniera semplificata\footnote{L'enumerazione presentata al lettore contiene solo alcune risoluzioni tra le quali il sistema può scegliere, la classe utilizzata dal software è più complessa e contiene attributi e metodi per fornire l'altezza e la larghezza di ogni risoluzione} dal seguente codice \cref{lst:ResolutionEnum} in modo da poter sempre impostare la risoluzione massima possibile della webcam (questo perché è logico pensare di avere a disposizione immagini per la calibrazione alla maggior risoluzione possibile).
 \lstinputlisting[float,language=Java,label={lst:ResolutionEnum}]{listings/pose/ResolutionEnum.java}
@@ -548,14 +548,14 @@ La reattività del sistema in termini di capacità di tracciamento degli oggetti
 
 È possibile modificare il valore dell'esposizione della camera per ottenere un sistema più reattivo decrementandolo, o per poter operare in condizioni di scarsa luminosità incrementandolo.
 \subsection{Rilevazione marker} \label{subsec:rilevazione_marker}
-Durante il calcolo della posa mi sono reso conto che gran parte del tempo veniva impiegato nella fase di rilevazione del marker, rallentando l'intero processo, per risolvere tale problema ho deciso di modificare la dimensione del frame ottenuto prima di rilevare i marker, dividendo altezza e larghezza per un fattore arbitrario \cref{lst:resize-frame}, in modo da passare al metodo \texttt{detectMarkers()} un'immagine più semplice da elaborare e di conseguenza velocizzare il processo \cref{lst:detection-and-rescale-points}.
+Durante il calcolo della posa è emerso che gran parte del tempo veniva impiegato nella fase di rilevazione del marker, rallentando l'intero processo, per risolvere tale problema si è deciso di modificare la dimensione del frame ottenuto prima di rilevare i marker, dividendo altezza e larghezza per un fattore arbitrario \cref{lst:resize-frame}, in modo da passare al metodo \texttt{detectMarkers()} un'immagine più semplice da elaborare e di conseguenza velocizzare la rilevazione \cref{lst:detection-and-rescale-points}.
 \lstinputlisting[float,language=Java,label={lst:resize-frame}]{listings/pose/resize-frame.java}
 \lstinputlisting[float,language=Java,label={lst:detection-and-rescale-points}]{listings/pose/detection-and-rescalePoints.java}
 
 Adottando questa soluzione bisogna però fare attenzione a due aspetti:
 \begin{enumerate}
 	\item Risoluzione troppo bassa: dividendo il frame ottenuto per un fattore arbitrario si rischia di ottenere immagini di bassa risoluzione, questo può portare ad una perdita significativa della precisione in casi in cui i marker sono piccoli o peggio all'impossibilità di rilevarli.
-	\item Posizioni degli angoli dei marker falsati: avendo in questo caso effettuato la rilevazione su un'immagine ristretta, le posizioni degli angoli dei marker saranno relative a tale immagine, per poter tornare ad utilizzare il frame di partenza nelle successive fasi è sufficiente chiamare il metodo \texttt{rescalePoints()} \cref{lst:rescale-points}, in grado di tradurre le posizioni degli angoli dei marker ottenute sull'immagine ristretta nelle coordinate dell'immagine originale.
+	\item Posizioni degli angoli dei marker falsate: avendo in questo caso effettuato la rilevazione su un'immagine ristretta, le posizioni degli angoli dei marker saranno relative a tale immagine, per poter tornare ad utilizzare il frame di partenza nelle successive fasi è sufficiente chiamare il metodo \texttt{rescalePoints()} \cref{lst:rescale-points}, in grado di tradurre le posizioni degli angoli dei marker ottenute sull'immagine ristretta nelle coordinate dell'immagine originale.
 	\lstinputlisting[float,language=Java,label={lst:rescale-points}]{listings/pose/rescalePoints.java}
 \end{enumerate}
 \subsection{Calcolo Posa} \label{subsec:calcolo_posa}
@@ -629,28 +629,28 @@ Durante lo sviluppo software sono state affrontate alcune sfide utili a comprend
 
 Particolare attenzione è stata posta a rendere il sistema utilizzabile in molteplici condizioni che possono variare per illuminazione, velocità di rilevazione e numero di dispositivi nella scena.
 
-Come mostrato da \ref{sec:verifica_dei_requisiti} tutti i requisiti sono stati soddisfatti anche se, per rispettare alcuni di essi è stato necessario scendere a compromessi in termini di precisione/illuminazione, è infatti emerso che a causa delle proprietà fisiche della camera per poter rilevare i dispositivi ad una data velocità di movimento è necessario avere un determinato tempo di esposizione, il quale però riduce inevitabilmente la luce catturata dal sensore, richiedendo un ambiente più luminoso per il corretto funzionamento del sistema.
+Come mostrato da \ref{sec:verifica_dei_requisiti} tutti i requisiti sono stati soddisfatti anche se, per rispettare alcuni di essi è stato necessario scendere a compromessi in termini di precisione/illuminazione, è infatti emerso che a causa delle proprietà fisiche della camera per poter rilevare i dispositivi con un'elevata velocità di movimento è necessario avere un tempo di esposizione ridotto, il quale però riduce inevitabilmente la luce catturata dal sensore, richiedendo un ambiente più luminoso per il corretto funzionamento del sistema.
 
 Qui di seguito sono mostrati i risultati del progetto completo una volta integrato a quello sviluppato dai ricercatori dell'università di Bologna.
 
 \vspace{0.5cm}
-\textit{I risultati proposti si riferiscono alla manifestazione della Notte dei ricercatori svoltasi il 27 settembre 2024, durante la quale è stato mostrato al pubblico il progetto finale nel suo insieme.}
+\textit{I risultati proposti si riferiscono alla manifestazione della Notte dei ricercatori svoltasi il 27 settembre 2024, durante la quale è stato mostrato al pubblico il progetto finale.}
 \vspace{0.5cm}
 
-Nella prima immagine è possibile vedere i robot utilizzati, ognuno con il proprio marker ArUco, già disposti in formazione attorno ad un robot centrale \ref{fig:robot}, nella seconda immagine invece è riportato il sistema completo nel quale, a terra sono presenti i robot mentre in alto è possibile notare una camera connessa ad un computer, grazie alla quale è possibile ottenere le posizioni dei robot \ref{fig:system}
-
-\begin{figure}[h!]
-	\centering
-	\includegraphics[width=0.8\linewidth]{./figures/Valutazione/robot1.jpg}
-	\caption{Robot identificati da marker ArUco}
-	\label{fig:robot}
-\end{figure}
+Nella prima immagine è possibile vedere i robot utilizzati, ognuno con il proprio marker ArUco, già disposti in formazione attorno ad un robot centrale \ref{fig:robot}, nella seconda immagine invece è riportato il sistema completo nel quale, a terra sono presenti i robot mentre in alto è possibile notare una camera connessa ad un computer grazie alla quale è possibile ottenere le posizioni dei robot \ref{fig:system}
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[width=0.8\linewidth, angle=-90]{./figures/Valutazione/system.jpg}
 	\caption{Sistema completo}
 	\label{fig:system}
+\end{figure}
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.6\linewidth]{./figures/Valutazione/robot1.jpg}
+	\caption{Robot identificati da marker ArUco}
+	\label{fig:robot}
 \end{figure}
 
 \section{Sviluppi futuri}
