@@ -4,6 +4,6 @@ if (found) {
         new Size(ZERO_X_ZONE, ZERO_Y_ZONE),
         new TermCriteria(TermCriteria.EPS + TermCriteria.COUNT, MAX_ITERATION, ACCURACY));
 
-        imagePoints.add(imageCorners);
-        objectPoints.add(objectPoint);
+	imagePoints.add(imageCorners);
+	objectPoints.add(objectPoint);
 }
