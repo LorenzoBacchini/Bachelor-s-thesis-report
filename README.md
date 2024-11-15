@@ -1,4 +1,4 @@
-# Bachelors' Degree in engineering and computer science
+# Bachelors' Degree in computer science and engineering
 
 ## Author
 Bacchini Lorenzo
